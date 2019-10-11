@@ -1,7 +1,7 @@
 platform :ios, '9.0'
 
 target 'pregnancyForD' do
-project '/Users/yintao/Desktop/项目/胡伟光医药项目/爱乐孕医生/project/pregnancyForD.xcodeproj'
+project '/Users/swf/Documents/aileyun_doctor/pregnancyForD.xcodeproj'
 
 use_frameworks!
 

@@ -46,7 +46,7 @@ class PatientDetailTableViewCell: UITableViewCell {
         patientDetailContent.textColor = kDefaultBlueColor
         
         //屏蔽事件
-        HCswitch.addTarget(self, action: #selector(PatientDetailTableViewCell.shieldAction), for: UIControlEvents.valueChanged)
+        HCswitch.addTarget(self, action: #selector(shieldAction), for: .valueChanged)
         
         changeSwitchBlock = { [weak self](isOn)in
             if isOn == "0"{
@@ -66,7 +66,7 @@ class PatientDetailTableViewCell: UITableViewCell {
         }
     }
     
-    func shieldAction(sender : UISwitch){
+    @objc func shieldAction(sender : UISwitch){
         if sender.isOn == true {
             if let shieldBlock = shieldBlock {
                 shieldBlock("1")

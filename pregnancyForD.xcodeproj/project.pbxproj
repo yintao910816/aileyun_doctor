@@ -1253,11 +1253,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF871E9A1E9A11B600478686 /* Build configuration list for PBXNativeTarget "pregnancyForD" */;
 			buildPhases = (
-				BB7C63B5707056F4B157C390 /* [CP] Check Pods Manifest.lock */,
+				F9810B325030579C8D81C70E /* [CP] Check Pods Manifest.lock */,
 				CF871E841E9A11B600478686 /* Sources */,
 				CF871E851E9A11B600478686 /* Frameworks */,
 				CF871E861E9A11B600478686 /* Resources */,
-				7116E95B3B26C0584177EA7F /* [CP] Embed Pods Frameworks */,
+				71301F9E196A667EAC0470CC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1298,6 +1298,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1456,13 +1457,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7116E95B3B26C0584177EA7F /* [CP] Embed Pods Frameworks */ = {
+		71301F9E196A667EAC0470CC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-pregnancyForD/Pods-pregnancyForD-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-pregnancyForD/Pods-pregnancyForD-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -1485,19 +1486,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-pregnancyForD/Pods-pregnancyForD-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pregnancyForD/Pods-pregnancyForD-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BB7C63B5707056F4B157C390 /* [CP] Check Pods Manifest.lock */ = {
+		F9810B325030579C8D81C70E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-pregnancyForD-checkManifestLockResult.txt",
 			);
@@ -1724,7 +1729,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89526C5F456339D5BB08E271 /* Pods-pregnancyForD.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = pregnancyForD/pregnancyForD.entitlements;
@@ -1779,7 +1784,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jclick.doctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = pregnancyForD/ObjectiveCBridge.h;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1788,7 +1793,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E993974E3D50C57B5A08AF58 /* Pods-pregnancyForD.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = pregnancyForD/pregnancyForD.entitlements;
@@ -1842,7 +1847,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jclick.doctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = pregnancyForD/ObjectiveCBridge.h;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

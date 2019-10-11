@@ -35,12 +35,12 @@ class RejectAndReplyView: UITableViewHeaderFooterView {
             make.height.equalTo(30)
         }
         rejectBtn.backgroundColor = kDefaultThemeColor
-        rejectBtn.setTitle("退回", for: UIControlState.normal)
+        rejectBtn.setTitle("退回", for: .normal)
         rejectBtn.titleLabel?.textColor = UIColor.white
         rejectBtn.clipsToBounds = true
         rejectBtn.layer.cornerRadius = 5
         
-        rejectBtn.addTarget(self, action: #selector(RejectAndReplyView.doctorReject), for: UIControlEvents.touchUpInside)
+        rejectBtn.addTarget(self, action: #selector(doctorReject), for: UIControl.Event.touchUpInside)
         
         v.addSubview(replyBtn)
         replyBtn.snp.updateConstraints { (make) in
@@ -50,12 +50,12 @@ class RejectAndReplyView: UITableViewHeaderFooterView {
             make.right.equalTo(v).offset(-KDefaultPadding)
         }
         replyBtn.backgroundColor = kDefaultThemeColor
-        replyBtn.setTitle("回复", for: UIControlState.normal)
+        replyBtn.setTitle("回复", for: .normal)
         replyBtn.titleLabel?.textColor = UIColor.white
         replyBtn.clipsToBounds = true
         replyBtn.layer.cornerRadius = 5
         
-        replyBtn.addTarget(self, action: #selector(RejectAndReplyView.reply), for: UIControlEvents.touchUpInside)
+        replyBtn.addTarget(self, action: #selector(reply), for: .touchUpInside)
         
         let d = UIView.init(frame: CGRect.init(x: 0, y: 41, width: SCREEN_WIDTH, height: 3))
         d.backgroundColor = kdivisionColor
@@ -64,13 +64,13 @@ class RejectAndReplyView: UITableViewHeaderFooterView {
         self.addSubview(v)
     }
     
-    func doctorReject(){
+    @objc func doctorReject(){
         if let rejectBlock = rejectBlock{
             rejectBlock()
         }
     }
    
-    func reply(){
+    @objc func reply(){
         if let replyBlock = replyBlock{
             replyBlock()
         }

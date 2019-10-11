@@ -41,15 +41,15 @@ class VoiceRecordingView: UIView {
         // 创建定时器
         timer = Timer(timeInterval: 0.5,
                       target: self,
-                      selector: #selector(VoiceRecordingView.updateImage),
+                      selector: #selector(updateImage),
                       userInfo: nil,
                       repeats: true)
         
         // 将定时器添加到运行循环
-        RunLoop.current.add(timer!, forMode: RunLoopMode.commonModes)
+        RunLoop.current.add(timer!, forMode: .common)
     }
     
-    func updateImage(){
+    @objc func updateImage(){
         var i = arc4random() % 4
         i = i + 1
         self.dynamicImageV.image = UIImage.init(named: String.init(format: "%d", i))
@@ -74,7 +74,7 @@ class VoiceRecordingView: UIView {
         let voicetubeImageView = UIImageView()
         containerV.addSubview(voicetubeImageView)
         voicetubeImageView.image = UIImage.init(named: "HC-mack")
-        voicetubeImageView.contentMode = UIViewContentMode.center
+        voicetubeImageView.contentMode = .center
         voicetubeImageView.snp.updateConstraints({ (make) in
             make.top.equalTo(containerV)
             make.left.equalTo(containerV)
@@ -84,7 +84,7 @@ class VoiceRecordingView: UIView {
         
         containerV.addSubview(dynamicImageV)
         dynamicImageV.image = UIImage.init(named: "1")
-        dynamicImageV.contentMode = UIViewContentMode.bottomLeft
+        dynamicImageV.contentMode = .bottomLeft
         dynamicImageV.snp.updateConstraints({ (make) in
             make.width.equalTo(60)
             make.height.equalTo(50)

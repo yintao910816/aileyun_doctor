@@ -49,7 +49,7 @@ class ChatMixTableViewCell: BaseChatTableViewCell {
         }
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.addSubview(statusL)
         self.addSubview(textL)
@@ -93,12 +93,12 @@ class ChatMixTableViewCell: BaseChatTableViewCell {
         }
     }
     
-    override func getPhotoCenter()->CGPoint{
+    func getPhotoCenter()->CGPoint{
         HCPrint(message: "MIX ****    *****")
         return cellCenter
     }
     
-    override func getImage()->UIImage{
+    func getImage()->UIImage{
         HCPrint(message: "MIX ****    *****")
         return cellImage
     }

@@ -50,7 +50,7 @@ class ConsultModule: NSObject {    //罗延琼
     override init() {
         super.init()
         
-        let footerV = MJRefreshAutoStateFooter.init(refreshingTarget: self, refreshingAction: #selector(ConsultModule.loadMoreData))
+        let footerV = MJRefreshAutoStateFooter.init(refreshingTarget: self, refreshingAction: #selector(loadMoreData))
         footerV?.setTitle("", for: .pulling)
         footerV?.setTitle("", for: .willRefresh)
         footerV?.setTitle("", for: .refreshing)
@@ -58,7 +58,7 @@ class ConsultModule: NSObject {    //罗延琼
         footerV?.setTitle("", for: .noMoreData)
         tableV.mj_footer = footerV
         
-        tableV.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        tableV.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
         
         tableV.register(ChatTextTableViewCell.self, forCellReuseIdentifier: TypeText)
         tableV.register(ChatPicTableViewCell.self, forCellReuseIdentifier: TypePic)
@@ -69,7 +69,7 @@ class ConsultModule: NSObject {    //罗延琼
         tableV.register(SupplyReplyView.self, forHeaderFooterViewReuseIdentifier: supplyReplyReuse)
     }
     
-    func loadMoreData(){
+    @objc func loadMoreData(){
         tableV.mj_footer.endRefreshing()
         requestData()
     }

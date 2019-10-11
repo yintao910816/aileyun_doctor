@@ -38,7 +38,7 @@ class ChatPicTableViewCell: BaseChatTableViewCell {
         return l
     }()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.addSubview(imgCollV)
@@ -71,12 +71,12 @@ class ChatPicTableViewCell: BaseChatTableViewCell {
         }
     }
     
-    override func getPhotoCenter()->CGPoint{
+    func getPhotoCenter()->CGPoint{
         HCPrint(message: "PIC ****    *****")
         return cellCenter
     }
     
-    override func getImage()->UIImage{
+    func getImage()->UIImage{
         HCPrint(message: "PIC ****    *****")
         return cellImage
     }

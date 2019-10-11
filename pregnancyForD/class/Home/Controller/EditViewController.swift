@@ -93,11 +93,11 @@ class EditViewController: UIViewController {
             make.top.equalTo(inputTextView.snp.bottom).offset(16)
             make.left.equalTo(inputTextView)
         }
-        cancelBtn.setTitle("取消", for: UIControlState.normal)
-        cancelBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+        cancelBtn.setTitle("取消", for: .normal)
+        cancelBtn.setTitleColor(UIColor.white, for: .normal)
         cancelBtn.backgroundColor = kDefaultThemeColor
         cancelBtn.layer.cornerRadius = 5
-        cancelBtn.addTarget(self, action: #selector(EditViewController.cancelAction), for: UIControlEvents.touchUpInside)
+        cancelBtn.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
         
         self.view.addSubview(confirmBtn)
         confirmBtn.snp.updateConstraints { (make) in
@@ -106,11 +106,11 @@ class EditViewController: UIViewController {
             make.top.equalTo(inputTextView.snp.bottom).offset(16)
             make.right.equalTo(inputTextView)
         }
-        confirmBtn.setTitle("确定", for: UIControlState.normal)
-        confirmBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+        confirmBtn.setTitle("确定", for: .normal)
+        confirmBtn.setTitleColor(UIColor.white, for: .normal)
         confirmBtn.backgroundColor = kDefaultThemeColor
         confirmBtn.layer.cornerRadius = 5
-        confirmBtn.addTarget(self, action: #selector(EditViewController.confirmAction), for: UIControlEvents.touchUpInside)
+        confirmBtn.addTarget(self, action: #selector(confirmAction), for: .touchUpInside)
 
     }
 
@@ -136,11 +136,11 @@ extension  EditViewController : UITextViewDelegate {
 }
 
 extension EditViewController {
-    func cancelAction(){
+    @objc func cancelAction(){
         self.navigationController?.popViewController(animated: true)
     }
     
-    func confirmAction(){
+    @objc func confirmAction(){
         if inputTextView.text != "" {
             
             if isFeedback == true{
@@ -205,7 +205,7 @@ extension EditViewController {
             }
             
             if isEditGoodat == true {
-                if inputTextView.text.characters.count > 10{
+                if inputTextView.text.count > 10{
                     HCShowError(info: "十个字符之内！")
                 }else{
                     updateUserInfo(key: "goodproject", value: inputTextView.text, callback: { (success, message) in

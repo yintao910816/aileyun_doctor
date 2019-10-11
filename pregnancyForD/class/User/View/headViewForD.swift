@@ -88,7 +88,7 @@ class headViewForD: UIView {
         })
         headImageView.layer.cornerRadius = 50
         headImageView.clipsToBounds = true
-        headImageView.contentMode = UIViewContentMode.scaleAspectFill
+        headImageView.contentMode = .scaleAspectFill
         
         
         //  姓名   性别   职称
@@ -147,7 +147,7 @@ class headViewForD: UIView {
             make.top.equalTo(hospitalLabel.snp.bottom).offset(16)
             make.left.right.equalTo(self)
         }
-        let goodatTapG = UITapGestureRecognizer.init(target: self, action: #selector(headViewForD.editGoodat))
+        let goodatTapG = UITapGestureRecognizer.init(target: self, action: #selector(editGoodat))
         contForGoodAt.addGestureRecognizer(goodatTapG)
         
         contForGoodAt.addSubview(goodAtL)
@@ -220,7 +220,7 @@ class headViewForD: UIView {
             make.right.equalTo(contForIntr).offset(-KDefaultPadding)
         })
         
-        let introTapG = UITapGestureRecognizer.init(target: self, action: #selector(headViewForD.editIntro))
+        let introTapG = UITapGestureRecognizer.init(target: self, action: #selector(editIntro))
         contForIntr.addGestureRecognizer(introTapG)
         
         let divisionV = UIView()
@@ -241,14 +241,14 @@ class headViewForD: UIView {
 }
 
 extension headViewForD {
-    func editIntro(){
+    @objc func editIntro(){
         HCPrint(message: "editIntro")
         if let introBlock = introBlock {
             introBlock()
         }
     }
     
-    func editGoodat(){
+    @objc func editGoodat(){
         HCPrint(message: "editGoodat")
         if let goodatBlock = goodatBlock {
             goodatBlock()

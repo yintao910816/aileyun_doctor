@@ -103,12 +103,12 @@ class topView: UIView,UIScrollViewDelegate{
         
         currentView = imageButton(frame: CGRect(x: imgWidth!, y: 0, width: imgWidth!, height: imgHeight!))
         currentView?.tag = 0
-        currentView?.addTarget(self, action: #selector(topView.click), for: UIControlEvents.touchUpInside)
+        currentView?.addTarget(self, action: #selector(topView.click), for: .touchUpInside)
         scrollView?.addSubview(currentView!)
         
         nextView = imageButton(frame: CGRect(x: 2*imgWidth!, y: 0, width: imgWidth!, height: imgHeight!))
         nextView?.tag = 1
-        nextView?.addTarget(self, action: #selector(topView.click), for: UIControlEvents.touchUpInside)
+        nextView?.addTarget(self, action: #selector(topView.click), for: .touchUpInside)
         scrollView?.addSubview(nextView!)
         
         pageControl = UIPageControl(frame: CGRect(x: 0, y: imgHeight!-20, width: imgWidth!, height: 20))
@@ -131,7 +131,7 @@ class topView: UIView,UIScrollViewDelegate{
     }
     
     //点击事件
-    func click(sender : imageButton){
+    @objc func click(sender : imageButton){
         var index = 0
         if sender.tag == 0{
             index = currentIndex!
@@ -173,7 +173,7 @@ class topView: UIView,UIScrollViewDelegate{
     }
     
     /// 滚动到下一张图片
-    func nextImage(){
+    @objc func nextImage(){
         scrollView?.setContentOffset(CGPoint(x: imgWidth!*2, y: 0), animated: true)
     }
     
@@ -218,7 +218,7 @@ class topView: UIView,UIScrollViewDelegate{
         currentView = nextView
         nextView = tempV
         
-        scrollView?.bringSubview(toFront: currentView!)
+        scrollView?.bringSubviewToFront(currentView!)
         currentView?.frame = CGRect(x: imgWidth!, y: 0, width: imgWidth!, height: imgHeight!)
         scrollView?.contentOffset = CGPoint(x: imgWidth!, y: 0)
     }

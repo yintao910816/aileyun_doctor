@@ -12,7 +12,7 @@ class HCNoticeTableViewCell: UITableViewCell {
     
     lazy var imgV : UIImageView = {
         let i = UIImageView()
-        i.contentMode = UIViewContentMode.center
+        i.contentMode = .center
         i.image = UIImage.init(named: "noticeNew")
         return i
     }()
@@ -57,7 +57,7 @@ class HCNoticeTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         

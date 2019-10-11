@@ -188,7 +188,7 @@ extension HttpClient {
                 let fileN = String.init(format: "file%d", i)
                 let imageN = String.init(format: "image%d.jpg", i)
                 if imageFile.isKind(of: UIImage.classForCoder()){
-                    formData.appendPart(withFileData: UIImageJPEGRepresentation(imageFile, 0.3)!, name: fileN, fileName: imageN, mimeType: "image/jpg")
+                    formData.appendPart(withFileData: imageFile.jpegData(compressionQuality: 0.3)!, name: fileN, fileName: imageN, mimeType: "image/jpg")
                 }
             }
         }, progress: { (progress) in

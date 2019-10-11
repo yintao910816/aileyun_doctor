@@ -71,7 +71,7 @@ class PatientDetailView: UIView {
             make.width.height.equalTo(30)
             make.left.equalTo(nameL.snp.right).offset(5)
         }
-        sexImageV.contentMode = UIViewContentMode.center
+        sexImageV.contentMode = .center
         
         
         containerV.addSubview(ageL)
@@ -105,7 +105,7 @@ class PatientDetailView: UIView {
             make.right.equalTo(containerV).offset(-KDefaultPadding)
             make.width.height.equalTo(35)
         }
-        youImageV.contentMode = UIViewContentMode.right
+        youImageV.contentMode = .right
         youImageV.image = UIImage.init(named: "HC-you")
         
         let divisionV = UIView()

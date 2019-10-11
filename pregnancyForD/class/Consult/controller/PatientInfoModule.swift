@@ -69,7 +69,7 @@ class PatientInfoModule: NSObject {
         })
         headIV.layer.cornerRadius = 50
         headIV.clipsToBounds = true
-        headIV.contentMode = UIViewContentMode.scaleAspectFill
+        headIV.contentMode = .scaleAspectFill
         
         headV.addSubview(nameL)
         nameL.snp.updateConstraints({ (make) in
@@ -83,7 +83,7 @@ class PatientInfoModule: NSObject {
             make.centerY.equalTo(nameL)
             make.left.equalTo(nameL.snp.right).offset(10)
         })
-        sexIV.contentMode = UIViewContentMode.left
+        sexIV.contentMode = .left
         
         patientTV.tableHeaderView = headV
     }

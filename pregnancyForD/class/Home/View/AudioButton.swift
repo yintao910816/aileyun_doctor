@@ -44,7 +44,7 @@ class AudioButton: UIButton {
             make.centerY.equalTo(self)
             make.width.height.equalTo(30)
         })
-        voiceIV.contentMode = UIViewContentMode.right
+        voiceIV.contentMode = .right
         
     }
 }

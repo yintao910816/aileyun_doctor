@@ -10,7 +10,7 @@ import UIKit
 
 class BaseNavigationController: UINavigationController{
     
-    override var childViewControllerForStatusBarStyle: UIViewController?{
+    override var childForStatusBarStyle: UIViewController?{
         get {
             return self.topViewController
         }
@@ -22,7 +22,7 @@ class BaseNavigationController: UINavigationController{
         self.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationBar.shadowImage = UIImage()
         
-        self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont.systemFont(ofSize: 22)]
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
         self.navigationBar.tintColor = UIColor.white
         self.navigationBar.barTintColor = kDefaultThemeColor
         self.navigationBar.isTranslucent = false
@@ -32,8 +32,8 @@ class BaseNavigationController: UINavigationController{
     
     override func viewWillAppear(_ animated: Bool) {
         //设置被push界面的返回按钮样式：隐藏文字
-        if childViewControllers.count > 0 {
-            let vc = childViewControllers[0]
+        if children.count > 0 {
+            let vc = children[0]
             vc.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .done, target: nil, action: nil)
         }
     }
@@ -45,7 +45,7 @@ class BaseNavigationController: UINavigationController{
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         
-        if childViewControllers.count > 0 {
+        if children.count > 0 {
             viewController.hidesBottomBarWhenPushed = true
             viewController.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .done, target: nil, action: nil)
         }

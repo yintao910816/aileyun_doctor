@@ -37,14 +37,14 @@ class HomeTableViewController: BaseTableViewController {
         
         self.tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         
-        let headerV = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(HomeTableViewController.loadNewData))
+        let headerV = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(loadNewData))
         headerV?.setTitle("下拉刷新", for: .idle)
         headerV?.setTitle("松手刷新", for: .pulling)
         headerV?.setTitle("即将刷新", for: .willRefresh)
         headerV?.setTitle("正在请求", for: .refreshing)
         tableView.mj_header = headerV
         
-        let footerV = MJRefreshAutoStateFooter.init(refreshingTarget: self, refreshingAction: #selector(HomeTableViewController.loadMoreData))
+        let footerV = MJRefreshAutoStateFooter.init(refreshingTarget: self, refreshingAction: #selector(loadMoreData))
         footerV?.setTitle("上拉加载", for: .pulling)
         footerV?.setTitle("松手刷新", for: .willRefresh)
         footerV?.setTitle("正在请求", for: .refreshing)
@@ -54,8 +54,8 @@ class HomeTableViewController: BaseTableViewController {
         
         tableView.separatorInset = UIEdgeInsets.init(top: 0, left: 60, bottom: 0, right: 0)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(HomeTableViewController.loadNewData), name: NSNotification.Name.init(ReplyConsultSuccess), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(HomeTableViewController.loadNewData), name: NSNotification.Name.init(RejectConsultSuccess), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadNewData), name: NSNotification.Name.init(ReplyConsultSuccess), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadNewData), name: NSNotification.Name.init(RejectConsultSuccess), object: nil)
         
         tableView.mj_header.beginRefreshing()
     }
@@ -100,7 +100,7 @@ class HomeTableViewController: BaseTableViewController {
 }
 
 extension HomeTableViewController{
-    func loadNewData(){
+    @objc func loadNewData(){
         pageNo = 1
         hasNext = true
         consultArray = nil
@@ -109,7 +109,7 @@ extension HomeTableViewController{
         requestData()
     }
 
-    func loadMoreData(){
+    @objc func loadMoreData(){
         tableView.mj_footer.endRefreshing()
         requestData()
     }

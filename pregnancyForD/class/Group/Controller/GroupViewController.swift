@@ -29,14 +29,14 @@ class GroupViewController: UIViewController {
     lazy var searchBarV : UIView = {
         let s = UIView.init(frame: CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: 44))
         let searchBtn = UIButton.init(frame: CGRect.init(x: 2, y: 2, width: SCREEN_WIDTH - 4, height: 40))
-        searchBtn.setImage(UIImage.init(named: "HC-search"), for: UIControlState.normal)
-        searchBtn.setTitle("搜索患者", for: UIControlState.normal)
+        searchBtn.setImage(UIImage.init(named: "HC-search"), for: .normal)
+        searchBtn.setTitle("搜索患者", for: .normal)
         searchBtn.setTitleColor(UIColor.darkText, for: .normal)
         searchBtn.layer.cornerRadius = 20
         searchBtn.layer.borderColor = kdivisionColor.cgColor
         searchBtn.layer.borderWidth = 1
         searchBtn.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 10)
-        searchBtn.addTarget(self, action: #selector(GroupViewController.searchVC), for: .touchUpInside)
+        searchBtn.addTarget(self, action: #selector(searchVC), for: .touchUpInside)
         s.addSubview(searchBtn)
         return s
     }()
@@ -65,7 +65,7 @@ class GroupViewController: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         self.navigationItem.title = "患者"
         
-        let headerV = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(GroupViewController.requestData))
+        let headerV = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(requestData))
         headerV?.setTitle("下拉刷新", for: .idle)
         headerV?.setTitle("释放更新", for: .pulling)
         headerV?.setTitle("加载中...", for: .refreshing)
@@ -74,7 +74,7 @@ class GroupViewController: UIViewController {
         tableView.tableHeaderView = searchBarV
         
 //        if UserManager.shareIntance.currentUser?.isMemb == false {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "分组管理", style: .done, target: self, action: #selector(GroupViewController.groupManager))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "分组管理", style: .done, target: self, action: #selector(groupManager))
 //        }
         
         tableView.register(GroupTitleTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
@@ -83,15 +83,15 @@ class GroupViewController: UIViewController {
         tableView.register(GroupPatientTableViewCell.self, forCellReuseIdentifier: reuseIdentifierP)
         tableView.register(UINib.init(nibName: "GroupPatientTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifierP)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(GroupViewController.requestData), name: NSNotification.Name.init(UpdatePatientInfo), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(GroupViewController.requestData), name: NSNotification.Name.init(AddGroupSuccess), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(GroupViewController.requestData), name: NSNotification.Name.init(RemoveGroupSuccess), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(requestData), name: NSNotification.Name.init(UpdatePatientInfo), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(requestData), name: NSNotification.Name.init(AddGroupSuccess), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(requestData), name: NSNotification.Name.init(RemoveGroupSuccess), object: nil)
     
         
         tableView.mj_header.beginRefreshing()
     }
     
-    func searchVC(){
+    @objc func searchVC(){
         let searchVC = SearchPatiViewController()
         self.navigationController?.pushViewController(searchVC, animated: true)
     }
@@ -121,14 +121,14 @@ class GroupViewController: UIViewController {
 
 extension GroupViewController{
     
-    func groupManager(){
+    @objc func groupManager(){
         let GroupMTVC = GroupManagerController()
         GroupMTVC.forSelector = false
         self.navigationController?.pushViewController(GroupMTVC, animated: true)
     }
 
     //请求数据
-    func requestData() {
+    @objc func requestData() {
         self.tableView.mj_header.endRefreshing()
         
         SVProgressHUD.show()
@@ -207,7 +207,7 @@ extension GroupViewController: UITableViewDataSource, UITableViewDelegate {
                     }
                     //tableView视图更新
                     tableView.beginUpdates()
-                    tableView.deleteRows(at: indexPathArray, with: UITableViewRowAnimation.top)
+                    tableView.deleteRows(at: indexPathArray, with: .top)
                     tableView.endUpdates()
                 }else{
                     //过多的删掉
@@ -225,7 +225,7 @@ extension GroupViewController: UITableViewDataSource, UITableViewDelegate {
                         }
                         //tableView视图更新
                         tableView.beginUpdates()
-                        tableView.deleteRows(at: indexPathArray, with: UITableViewRowAnimation.top)
+                        tableView.deleteRows(at: indexPathArray, with: .top)
                         tableView.endUpdates()
                     })
                 }
@@ -251,7 +251,7 @@ extension GroupViewController: UITableViewDataSource, UITableViewDelegate {
                         tempRow = tempRow + 1
                     }
                     tableView.beginUpdates()
-                    tableView.insertRows(at: indexPathArray, with: UITableViewRowAnimation.top)
+                    tableView.insertRows(at: indexPathArray, with: .top)
                     tableView.endUpdates()
                 }
             }

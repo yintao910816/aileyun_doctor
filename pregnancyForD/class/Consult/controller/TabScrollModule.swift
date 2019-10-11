@@ -93,7 +93,7 @@ class TabScrollModule: NSObject {
             b.setImage(UIImage.init(named: imgs[index] + "-red"), for: .normal)
             b.setImage(UIImage.init(named: imgs[index] + "-white"), for: .selected)
             b.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 10)
-            b.addTarget(self, action: #selector(TabScrollModule.btnClick), for: .touchDown)
+            b.addTarget(self, action: #selector(btnClick), for: .touchDown)
             b.adjustsImageWhenHighlighted = false
             b.titleLabel?.font = UIFont.init(name: kReguleFont, size: 14)
             b.tag = index
@@ -113,7 +113,7 @@ class TabScrollModule: NSObject {
         scrollV.contentSize = CGSize.init(width: scrollF.width * CGFloat(views.count), height: scrollF.height)
     }
     
-    func btnClick(sender : UIButton){
+    @objc func btnClick(sender : UIButton){
         guard sender.isSelected == false else {
             return
         }

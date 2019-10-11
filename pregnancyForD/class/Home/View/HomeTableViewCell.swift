@@ -71,10 +71,10 @@ class HomeTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.selectionStyle = UITableViewCellSelectionStyle.none
+        self.selectionStyle = .none
 
         self.addSubview(headImage)
         headImage.snp.updateConstraints { (make) in
@@ -84,7 +84,7 @@ class HomeTableViewCell: UITableViewCell {
         }
         headImage.layer.cornerRadius = 20
         headImage.clipsToBounds = true
-        headImage.contentMode = UIViewContentMode.scaleAspectFill
+        headImage.contentMode = .scaleAspectFill
         
         self.addSubview(badgeNumber)
         badgeNumber.snp.updateConstraints { (make) in

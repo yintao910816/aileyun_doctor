@@ -41,7 +41,7 @@ class DeleteButton: UIButton {
             make.centerY.equalTo(self)
             make.width.height.equalTo(32)
         })
-        deleteImagev.contentMode = UIViewContentMode.center
+        deleteImagev.contentMode = .center
         
         
         titleL.snp.updateConstraints { (make) in

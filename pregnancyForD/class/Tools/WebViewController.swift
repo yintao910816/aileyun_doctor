@@ -64,7 +64,7 @@ class WebViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let leftItem = UIBarButtonItem(image: UIImage(named: "zuo-"), style: .plain, target: self, action: #selector(WebViewController.popViewController))
+        let leftItem = UIBarButtonItem(image: UIImage(named: "zuo-"), style: .plain, target: self, action: #selector(popViewController))
         self.navigationItem.leftBarButtonItem = leftItem
     }
     
@@ -74,7 +74,7 @@ class WebViewController: UIViewController {
         webView.loadRequest(request)
     }
 
-    func popViewController(){
+    @objc func popViewController(){
         if webView.canGoBack{
             webView.goBack()
         }else{
@@ -96,7 +96,7 @@ class WebViewController: UIViewController {
 }
 
 extension WebViewController : UIWebViewDelegate{
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool{
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool{
         
         let s = request.url?.absoluteString
         if s == "app://reload"{

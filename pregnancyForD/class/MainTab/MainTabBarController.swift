@@ -10,7 +10,7 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-    override var childViewControllerForStatusBarStyle: UIViewController?{
+    override var childForStatusBarStyle: UIViewController?{
         get {
             return self.selectedViewController
         }
@@ -54,12 +54,12 @@ class MainTabBarController: UITabBarController {
         
         // 设置TabBar和Nav的标题
         childController.title = title
-        childController.tabBarItem.image = UIImage(named: normalImage)?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
-        childController.tabBarItem.selectedImage = UIImage(named: normalImage + "-red")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        childController.tabBarItem.image = UIImage(named: normalImage)?.withRenderingMode(.alwaysOriginal)
+        childController.tabBarItem.selectedImage = UIImage(named: normalImage + "-red")?.withRenderingMode(.alwaysOriginal)
         
         // 包装导航控制器
         let nav = BaseNavigationController(rootViewController: childController)
-        self.addChildViewController(nav)
+        self.addChild(nav)
     }
 
     override func didReceiveMemoryWarning() {

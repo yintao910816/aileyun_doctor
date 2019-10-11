@@ -21,7 +21,7 @@ class BaseChatTableViewCell: UITableViewCell {
         let h = UIImageView.init()
         h.layer.cornerRadius = 20
         h.clipsToBounds = true
-        h.contentMode = UIViewContentMode.scaleAspectFill
+        h.contentMode = .scaleAspectFill
         return h
     }()
     
@@ -99,9 +99,9 @@ class BaseChatTableViewCell: UITableViewCell {
     }
     
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.selectionStyle = UITableViewCellSelectionStyle.none
+        self.selectionStyle = UITableViewCell.SelectionStyle.none
         
         self.addSubview(headImgV)
         
@@ -126,11 +126,11 @@ class BaseChatTableViewCell: UITableViewCell {
 }
 
 extension BaseChatTableViewCell : GetPhotoCenterDelegate {
-    func getPhotoCenter()->CGPoint{
-        return CGPoint.zero
-    }
-    
-    func getImage()->UIImage{
-        return UIImage.init()
-    }
+//    func getPhotoCenter()->CGPoint{
+//        return CGPoint.zero
+//    }
+//
+//    func getImage()->UIImage{
+//        return UIImage.init()
+//    }
 }

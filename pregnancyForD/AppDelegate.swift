@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
 
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
  
         let infoDictionary = Bundle.main.infoDictionary
         let majorVersion = infoDictionary! ["CFBundleShortVersionString"] as? NSString
@@ -119,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
 
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
         HCPrint(message: url)
         

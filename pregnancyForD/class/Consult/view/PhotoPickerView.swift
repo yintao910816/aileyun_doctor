@@ -51,7 +51,7 @@ class PhotoPickerView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 0
-        layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        layout.scrollDirection = .horizontal
         
         photoCollectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: 0, width: Int(SCREEN_WIDTH) , height: PhotoPickerViewHeight - 44), collectionViewLayout: layout)
         
@@ -66,7 +66,7 @@ class PhotoPickerView: UIView {
         photoCollectionView.dataSource = self
         
         photoCollectionView.backgroundColor = UIColor.white
-        photoCollectionView.contentInset = UIEdgeInsetsMake(0, 80, 0, 0)
+        photoCollectionView.contentInset = UIEdgeInsets(top: 0, left: 80, bottom: 0, right: 0)
     }
     
     func initSelectButtonView(){
@@ -94,7 +94,7 @@ class PhotoPickerView: UIView {
         }
         photoBtn.imageV.image = UIImage.init(named: "HC-photo")
         photoBtn.titleL.text = "拍照"
-        photoBtn.addTarget(self, action: #selector(PhotoPickerView.takePhoto), for: UIControlEvents.touchUpInside)
+        photoBtn.addTarget(self, action: #selector(takePhoto), for: .touchUpInside)
         
         let divisionV = UIView()
         chooseView.addSubview(divisionV)
@@ -112,7 +112,7 @@ class PhotoPickerView: UIView {
         }
         picBtn.imageV.image = UIImage.init(named: "HC-pic")
         picBtn.titleL.text = "相册"
-        picBtn.addTarget(self, action: #selector(PhotoPickerView.systemPic), for: UIControlEvents.touchUpInside)
+        picBtn.addTarget(self, action: #selector(systemPic), for: .touchUpInside)
         
     }
     
@@ -141,11 +141,11 @@ class PhotoPickerView: UIView {
             make.bottom.equalTo(containerV).offset(-2)
             make.width.equalTo(100)
         }
-        originalImageBtn.setTitle("原图", for: UIControlState.normal)
-        originalImageBtn.setTitleColor(kDefaultThemeColor, for: UIControlState.normal)
-        originalImageBtn.setImage(UIImage.init(named: "HC-weixuan"), for: UIControlState.normal)
-        originalImageBtn.setImage(UIImage.init(named: "HC-yixuan-"), for: UIControlState.selected)
-        originalImageBtn.addTarget(self, action: #selector(PhotoPickerView.originalAction), for: UIControlEvents.touchUpInside)
+        originalImageBtn.setTitle("原图", for: .normal)
+        originalImageBtn.setTitleColor(kDefaultThemeColor, for: .normal)
+        originalImageBtn.setImage(UIImage.init(named: "HC-weixuan"), for: .normal)
+        originalImageBtn.setImage(UIImage.init(named: "HC-yixuan-"), for: .selected)
+        originalImageBtn.addTarget(self, action: #selector(originalAction), for: .touchUpInside)
         
         containerV.addSubview(confirmBtn)
         confirmBtn.snp.updateConstraints { (make) in
@@ -154,12 +154,12 @@ class PhotoPickerView: UIView {
             make.bottom.equalTo(containerV).offset(-2)
             make.width.equalTo(100)
         }
-        confirmBtn.setTitle("发送", for: UIControlState.normal)
-        confirmBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+        confirmBtn.setTitle("发送", for: .normal)
+        confirmBtn.setTitleColor(UIColor.white, for: .normal)
         confirmBtn.backgroundColor = UIColor.lightGray
         confirmBtn.isEnabled = false
         confirmBtn.layer.cornerRadius = 5
-        confirmBtn.addTarget(self, action: #selector(PhotoPickerView.sendAction), for: UIControlEvents.touchUpInside)
+        confirmBtn.addTarget(self, action: #selector(sendAction), for: .touchUpInside)
     }
     
 }
@@ -210,17 +210,17 @@ extension PhotoPickerView : UICollectionViewDelegate, UICollectionViewDataSource
 
 extension PhotoPickerView {
     
-    func takePhoto(){
+    @objc func takePhoto(){
         if checkCameraPermissions() {
             let photoVC = UIImagePickerController()
-            photoVC.sourceType = UIImagePickerControllerSourceType.camera
+            photoVC.sourceType = .camera
             photoVC.allowsEditing = true
             photoVC.delegate = self
             UIApplication.shared.keyWindow?.rootViewController?.present(photoVC, animated: true, completion: nil)
         }else{
             authorizationForCamera(confirmBlock: { [unowned self]()in
                 let photoVC = UIImagePickerController()
-                photoVC.sourceType = UIImagePickerControllerSourceType.camera
+                photoVC.sourceType = .camera
                 photoVC.allowsEditing = true
                 photoVC.delegate = self
                 UIApplication.shared.keyWindow?.rootViewController?.present(photoVC, animated: true, completion: nil)
@@ -228,15 +228,15 @@ extension PhotoPickerView {
         }
     }
     
-    func systemPic(){
+    @objc func systemPic(){
         let systemPicVC = UIImagePickerController()
-        systemPicVC.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        systemPicVC.sourceType = .photoLibrary
         systemPicVC.allowsEditing = true
         systemPicVC.delegate = self
         UIApplication.shared.keyWindow?.rootViewController?.present(systemPicVC, animated: true, completion: nil)
     }
     
-    func originalAction(){
+    @objc func originalAction(){
         if originalImageBtn.isSelected == true{
             originalImageBtn.isSelected = false
         }else{
@@ -273,7 +273,7 @@ extension PhotoPickerView {
         }
     }
     
-    func sendAction(){
+    @objc func sendAction(){
         SVProgressHUD.show()
         DispatchQueue.global().async {[unowned self]()in
             var imageArr = [UIImage]()

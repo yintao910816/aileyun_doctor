@@ -57,8 +57,8 @@ class FirstPageViewController: BaseViewController {    //  谭丽华
         
         initUI()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(FirstPageViewController.requestData), name: NSNotification.Name.init(ReplyConsultSuccess), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(FirstPageViewController.requestData), name: NSNotification.Name.init(RejectConsultSuccess), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(requestData), name: NSNotification.Name.init(ReplyConsultSuccess), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(requestData), name: NSNotification.Name.init(RejectConsultSuccess), object: nil)
         
         scrollV.mj_header.beginRefreshing()
     }
@@ -72,7 +72,7 @@ class FirstPageViewController: BaseViewController {    //  谭丽华
     }
     
     
-    func requestData(){
+    @objc func requestData(){
         scrollV.mj_header.endRefreshing()
         
         SVProgressHUD.show()
@@ -148,7 +148,7 @@ class FirstPageViewController: BaseViewController {    //  谭丽华
         
         //禁止自动调整offset
         if #available(iOS 11.0, *) {
-            scrollV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+            scrollV.contentInsetAdjustmentBehavior = .never
         } else {
         }
         
@@ -208,7 +208,7 @@ extension FirstPageViewController {
         HttpRequestManager.shareIntance.unReplyCount(callback: {(success, num) in
             if success == true {
                 let tabVC = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarController
-                let navC = tabVC.childViewControllers[1] as! UINavigationController
+                let navC = tabVC.children[1] as! UINavigationController
                 
                 if num != 0 {
                     navC.tabBarItem.badgeValue = String.init(format: "%d", num)

@@ -51,7 +51,7 @@ class AuditionButton: UIButton {
             make.centerY.equalTo(self)
             make.width.height.equalTo(32)
         })
-        shitingImageV.contentMode = UIViewContentMode.center
+        shitingImageV.contentMode = .center
         
         
         titleL.snp.updateConstraints { (make) in

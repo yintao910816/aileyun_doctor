@@ -12,7 +12,7 @@ class HCInformationTableViewCell: UITableViewCell {
     
     lazy var imgV : UIImageView = {
         let i = UIImageView()
-        i.contentMode = UIViewContentMode.scaleAspectFit
+        i.contentMode = .scaleAspectFit
         i.layer.cornerRadius = 20
         i.clipsToBounds = true
         i.image = UIImage.init(named: "HC_moren-5")
@@ -77,7 +77,7 @@ class HCInformationTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         

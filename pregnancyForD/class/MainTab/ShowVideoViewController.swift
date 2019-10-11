@@ -59,12 +59,12 @@ class ShowVideoViewController: UIViewController {
         // 缓冲足够播放
         playerItem.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: NSKeyValueObservingOptions.new, context: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ShowVideoViewController.playVideoEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
+        NotificationCenter.default.addObserver(self, selector: #selector(playVideoEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
         
         avplayer = AVPlayer(playerItem: playerItem)
         playerLayer = AVPlayerLayer(player: avplayer)
         //设置模式
-        playerLayer.videoGravity = AVLayerVideoGravityResizeAspect
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
         playerLayer.contentsScale = UIScreen.main.scale
         
         self.view.addSubview(self.playerView)
@@ -75,8 +75,8 @@ class ShowVideoViewController: UIViewController {
         
         self.playerView.delegate = self
         
-        self.link = CADisplayLink(target: self, selector: #selector(ShowVideoViewController.update))
-        self.link.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
+        self.link = CADisplayLink(target: self, selector: #selector(update))
+        self.link.add(to: RunLoop.main, forMode: .default)
         
         SVProgressHUD.show()
         
@@ -86,11 +86,11 @@ class ShowVideoViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func playVideoEnd(){
+    @objc func playVideoEnd(){
         HCPrint(message: "播放完毕")
-        self.playerView.playBtn.setImage(UIImage(named: "player_play"), for: UIControlState.normal)
+        self.playerView.playBtn.setImage(UIImage(named: "player_play"), for: .normal)
         self.playerView.playing = false
-        let seekTime = CMTimeMake(0, 1)
+        let seekTime = CMTimeMake(value: 0, timescale: 1)
         self.avplayer.seek(to: seekTime, completionHandler: {b in
             
         })
@@ -122,7 +122,7 @@ class ShowVideoViewController: UIViewController {
             
             SVProgressHUD.dismiss()
             
-            if playerItem.status == AVPlayerItemStatus.readyToPlay{
+            if playerItem.status == AVPlayerItem.Status.readyToPlay{
                 HCPrint(message: "readyToPlay")
                 // 只有在这个状态下才能播放
                 self.avplayer.play()
@@ -151,7 +151,7 @@ class ShowVideoViewController: UIViewController {
     }
     
     //更新时间
-    func update(){
+    @objc func update(){
         //暂停的时候
         if !self.playerView.playing{
             return
@@ -193,9 +193,9 @@ extension ShowVideoViewController: HCPlayerViewDelegate{
     func zzplayer(playerView: HCPlayerView, sliderTouchUpOut slider: UISlider) {
         
         //当视频状态为AVPlayerStatusReadyToPlay时才处理
-        if self.avplayer.status == AVPlayerStatus.readyToPlay{
+        if self.avplayer.status == AVPlayer.Status.readyToPlay{
             let duration = slider.value * Float(CMTimeGetSeconds(self.avplayer.currentItem!.duration))
-            let seekTime = CMTimeMake(Int64(duration), 1)
+            let seekTime = CMTimeMake(value: Int64(duration), timescale: 1)
             self.avplayer.seek(to: seekTime, completionHandler: { [weak self](b) in
                 self?.playerView.sliding = false
             })
@@ -207,7 +207,7 @@ extension ShowVideoViewController: HCPlayerViewDelegate{
         if !playerView.playing{
             self.avplayer.pause()
         }else{
-            if self.avplayer.status == AVPlayerStatus.readyToPlay{
+            if self.avplayer.status == AVPlayer.Status.readyToPlay{
                 self.avplayer.play()
             }
         }

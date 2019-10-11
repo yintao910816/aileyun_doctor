@@ -34,8 +34,8 @@ class SupplyReplyView: UITableViewHeaderFooterView {
             make.height.equalTo(30)
         }
         supplementBtn.backgroundColor = kDefaultThemeColor
-        supplementBtn.setTitle("补充回复", for: UIControlState.normal)
-        supplementBtn.addTarget(self, action: #selector(SupplyReplyView.reply), for: UIControlEvents.touchUpInside)
+        supplementBtn.setTitle("补充回复", for: UIControl.State.normal)
+        supplementBtn.addTarget(self, action: #selector(reply), for: UIControl.Event.touchUpInside)
         supplementBtn.clipsToBounds = true
         supplementBtn.layer.cornerRadius = 5
         
@@ -46,7 +46,7 @@ class SupplyReplyView: UITableViewHeaderFooterView {
         self.addSubview(v)
     }
     
-    func reply(){
+    @objc func reply(){
         if let replyBlock = replyBlock{
             replyBlock()
         }

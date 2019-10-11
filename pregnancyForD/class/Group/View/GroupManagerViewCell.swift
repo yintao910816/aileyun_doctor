@@ -34,21 +34,21 @@ class GroupManagerViewCell: UICollectionViewCell {
             make.left.right.top.bottom.equalTo(self)
         }
         infoBtn.backgroundColor = UIColor.white
-        infoBtn.addTarget(self, action: #selector(GroupManagerViewCell.chooseAction), for: UIControlEvents.touchUpInside)
+        infoBtn.addTarget(self, action: #selector(chooseAction), for: .touchUpInside)
         
-        let longPressG = UILongPressGestureRecognizer.init(target: self, action: #selector(GroupManagerViewCell.longPressAction))
+        let longPressG = UILongPressGestureRecognizer.init(target: self, action: #selector(longPressAction))
         longPressG.minimumPressDuration = 1
         infoBtn.addGestureRecognizer(longPressG)
         
     }
     
-    func chooseAction(){
+    @objc func chooseAction(){
         if let chooseBlock = chooseBlock{
             chooseBlock(contentS!)
         }
     }
     
-    func longPressAction(){
+    @objc func longPressAction(){
         if let longPressBlock = longPressBlock{
             longPressBlock(contentS!)
         }

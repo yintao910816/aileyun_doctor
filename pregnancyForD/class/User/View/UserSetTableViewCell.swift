@@ -15,7 +15,7 @@ class UserSetTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectionStyle = UITableViewCellSelectionStyle.none
+        self.selectionStyle = .none
         
         titleLabel.textColor = UIColor.lightGray
         informationL.textColor = kDefaultBlueColor

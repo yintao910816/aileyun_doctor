@@ -31,7 +31,7 @@ class PhotoPickerButton: UIButton {
             make.centerX.equalTo(self)
             make.bottom.equalTo(self.snp.centerY).offset(5)
         }
-        imageV.contentMode = UIViewContentMode.center
+        imageV.contentMode = .center
         
         titleL.snp.updateConstraints({ (make) in
             make.width.height.equalTo(40)

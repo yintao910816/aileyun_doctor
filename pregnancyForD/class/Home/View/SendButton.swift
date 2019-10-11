@@ -41,7 +41,7 @@ class SendButton: UIButton {
             make.centerY.equalTo(self)
             make.width.height.equalTo(32)
         })
-        sendImagev.contentMode = UIViewContentMode.center
+        sendImagev.contentMode = .center
         
         
         titleL.snp.updateConstraints { (make) in

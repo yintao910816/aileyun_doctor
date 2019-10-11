@@ -133,9 +133,9 @@ open class CustomSizeFlowLayout : UICollectionViewLayout{
     // MARK: 返回指定的装饰视图的布局属性
     open override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         switch elementKind {
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             return self.headersAttributes[indexPath.section]
-        case UICollectionElementKindSectionFooter:
+        case UICollectionView.elementKindSectionFooter:
             return self.footersAttributes[indexPath.section]
         default:
             return nil
@@ -145,9 +145,9 @@ open class CustomSizeFlowLayout : UICollectionViewLayout{
     // MARK: 返回指定的附加视图的布局属性
     override open func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         switch elementKind {
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             return self.headersAttributes[indexPath.section]
-        case UICollectionElementKindSectionFooter:
+        case UICollectionView.elementKindSectionFooter:
             return self.footersAttributes[indexPath.section]
         default:
             return nil
@@ -236,7 +236,7 @@ open class CustomSizeFlowLayout : UICollectionViewLayout{
     fileprivate func prepareLayoutSectionHeader(_ section: Int) {
         if self.headerReferenceHeight > 0 {
             let indexPath = IndexPath(row: 0, section: section)
-            let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, with: indexPath)
+            let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
             attributes.frame.origin.y = self.flowHeight
             attributes.frame.size.height = self.headerReferenceHeight
             attributes.frame.size.width = self.collectionView!.bounds.size.width
@@ -329,7 +329,7 @@ open class CustomSizeFlowLayout : UICollectionViewLayout{
     fileprivate func prepareLayoutSectionFooter(_ section: Int) {
         if self.footerReferenceHeight > 0 {
             let indexPath = IndexPath(row: 0, section: section)
-            let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, with: indexPath)
+            let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, with: indexPath)
             attributes.frame.origin.y = self.flowHeight
             attributes.frame.size.height = self.footerReferenceHeight
             attributes.frame.size.width = self.collectionView!.bounds.size.width

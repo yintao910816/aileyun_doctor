@@ -105,10 +105,10 @@ class CountViewController: UIViewController {
             }
         }
         
-        confirmBtn.setTitle(btnStr, for: UIControlState.normal)
+        confirmBtn.setTitle(btnStr, for: .normal)
         confirmBtn.layer.cornerRadius = 5
         
-        confirmBtn.addTarget(self, action: #selector(CountViewController.bindWeixin), for: UIControlEvents.touchUpInside)
+        confirmBtn.addTarget(self, action: #selector(CountViewController.bindWeixin), for: .touchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,7 +117,7 @@ class CountViewController: UIViewController {
     
     
     
-    func bindWeixin(){
+    @objc func bindWeixin(){
         
         let req = SendAuthReq.init()
         //应用授权作用域，如获取用户个人信息则填写snsapi_userinfo

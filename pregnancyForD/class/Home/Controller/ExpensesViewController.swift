@@ -70,7 +70,7 @@ class ExpensesViewController: UIViewController {
         var frame = inputF.frame
         frame.size.width = 10
         let leftV = UIView.init(frame: CGRect.init(origin: CGPoint.init(), size: frame.size))
-        inputF.leftViewMode = UITextFieldViewMode.always
+        inputF.leftViewMode = .always
         inputF.leftView = leftV
         
         self.view.addSubview(editBtn)
@@ -79,12 +79,12 @@ class ExpensesViewController: UIViewController {
             make.top.equalTo(inputF).offset(5)
             make.width.equalTo(70)
         }
-        editBtn.setTitle("确定", for: UIControlState.normal)
+        editBtn.setTitle("确定", for: .normal)
         editBtn.layer.cornerRadius = 5
         editBtn.titleLabel?.textColor = UIColor.white
         editBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         editBtn.backgroundColor = kDefaultThemeColor
-        editBtn.addTarget(self, action: #selector(ExpensesViewController.textConfirmAction), for: UIControlEvents.touchUpInside)
+        editBtn.addTarget(self, action: #selector(textConfirmAction), for: .touchUpInside)
         
         
         let infoL = UILabel()
@@ -175,7 +175,7 @@ extension ExpensesViewController : UICollectionViewDelegate, UICollectionViewDat
 }
 
 extension ExpensesViewController {
-    func textConfirmAction(){
+    @objc func textConfirmAction(){
         if inputF.text == "" || inputF.text == nil {
             HCShowError(info: "请输入资费！")
         }else{

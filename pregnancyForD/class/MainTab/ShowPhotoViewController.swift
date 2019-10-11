@@ -28,7 +28,7 @@ class ShowPhotoViewController: UIViewController {
                 let imagV = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
                 imagV.isUserInteractionEnabled = true
                 imagV.isMultipleTouchEnabled = true
-                imagV.contentMode = UIViewContentMode.scaleAspectFit
+                imagV.contentMode = .scaleAspectFit
                 imagV.HC_setImageFromURL(urlS: i, placeHolder: "HC-placeHolder")
                 tempArr.append(imagV)
                 
@@ -81,7 +81,7 @@ class ShowPhotoViewController: UIViewController {
         
         self.view.addSubview(scrollV)
 
-        let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(ShowPhotoViewController.dismissAction))
+        let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(dismissAction))
         scrollV.addGestureRecognizer(tapGes)
         
 //        initSaveBtn()
@@ -101,11 +101,11 @@ class ShowPhotoViewController: UIViewController {
             make.bottom.equalTo(self.view).offset(-20)
         }
         
-        b.addTarget(self, action: #selector(ShowPhotoViewController.savePic), for: .touchUpInside)
+        b.addTarget(self, action: #selector(savePic), for: .touchUpInside)
     }
 
     
-    func savePic(){
+    @objc func savePic(){
         guard let image = imagVArr![0].image else {
             return
         }
@@ -134,7 +134,7 @@ class ShowPhotoViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func dismissAction(){
+    @objc func dismissAction(){
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true) { 
             //

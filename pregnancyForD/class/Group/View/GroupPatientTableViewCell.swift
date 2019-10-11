@@ -55,7 +55,7 @@ class GroupPatientTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectionStyle = UITableViewCellSelectionStyle.none
+        self.selectionStyle = .none
         
         headImageView.layer.cornerRadius = 18
         headImageView.clipsToBounds = true

@@ -31,7 +31,7 @@ class EqualSpaceFlowLayout: UICollectionViewFlowLayout {
     override init() {
         betweenOfCell = 10
         super.init()
-        scrollDirection = UICollectionViewScrollDirection.horizontal
+        scrollDirection = .horizontal
         minimumLineSpacing = 10
     }
     convenience init(with cellType:AlignType){
@@ -60,10 +60,10 @@ class EqualSpaceFlowLayout: UICollectionViewFlowLayout {
             let nextY : CGFloat = nextAttr == nil ? 0 : nextAttr!.frame.maxY
             
             if currentY != previousY && currentY != nextY{
-                if currentAttr.representedElementKind == UICollectionElementKindSectionHeader{
+                if currentAttr.representedElementKind == UICollectionView.elementKindSectionHeader{
                     layoutAttributes_t.removeAll()
                     sumWidth = 0.0
-                }else if currentAttr.representedElementKind == UICollectionElementKindSectionFooter{
+                }else if currentAttr.representedElementKind == UICollectionView.elementKindSectionFooter{
                     layoutAttributes_t.removeAll()
                     sumWidth = 0.0
                 }else{

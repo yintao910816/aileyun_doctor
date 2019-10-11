@@ -58,10 +58,10 @@ class UserTableViewController: BaseTableViewController {
         
         self.tableView.backgroundColor = kLightGrayColor
         
-        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.estimatedSectionHeaderHeight = 350
         
-        let headerV = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(UserTableViewController.requestData))
+        let headerV = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(requestData))
         headerV?.setTitle("下拉刷新", for: .idle)
         headerV?.setTitle("释放更新", for: .pulling)
         headerV?.setTitle("加载中...", for: .refreshing)
@@ -71,9 +71,9 @@ class UserTableViewController: BaseTableViewController {
         self.tableView.register(UserSetTableViewCell.self, forCellReuseIdentifier: reuseIdentifierC)
         self.tableView.register(UINib.init(nibName: "UserSetTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifierC)
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "setting"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(UserTableViewController.userSetting))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "setting"), style: .plain, target: self, action: #selector(userSetting))
         
-        NotificationCenter.default.addObserver(self, selector: #selector(UserTableViewController.requestData), name: NSNotification.Name.init(ModifyDoctorIntro), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(requestData), name: NSNotification.Name.init(ModifyDoctorIntro), object: nil)
         
 //        if UserManager.shareIntance.currentUser?.isMemb == true{
 //            tableView.allowsSelection = false
@@ -172,7 +172,7 @@ class UserTableViewController: BaseTableViewController {
 
 extension UserTableViewController {
    
-    func userSetting(){
+    @objc func userSetting(){
         let settingVC = SettingTableViewController()
         
         settingVC.modalPresentationStyle = .custom
@@ -207,10 +207,10 @@ extension UserTableViewController {
         let logoutBtn = UIButton()
         footContainerV.addSubview(logoutBtn)
         logoutBtn.frame = CGRect.init(x: 30, y: 20, width: SCREEN_WIDTH - 60, height: 40)
-        logoutBtn.setTitle("注销", for: UIControlState.normal)
+        logoutBtn.setTitle("注销", for: .normal)
         logoutBtn.backgroundColor = kDefaultThemeColor
         logoutBtn.layer.cornerRadius = 5
-        logoutBtn.addTarget(self, action: #selector(UserTableViewController.logout), for: UIControlEvents.touchUpInside)
+        logoutBtn.addTarget(self, action: #selector(logout), for: .touchUpInside)
         
         let infoDic = Bundle.main.infoDictionary
         let currentVersion = infoDic?["CFBundleShortVersionString"] as! String
@@ -231,7 +231,7 @@ extension UserTableViewController {
 }
 
 extension UserTableViewController {
-    func requestData(){
+    @objc func requestData(){
         self.tableView.mj_header.endRefreshing()
         
          SVProgressHUD.show()
@@ -267,7 +267,7 @@ extension UserTableViewController {
        
     }
     
-    func logout(){
+    @objc func logout(){
         let alertController = UIAlertController(title: "提示信息",
                                                 message: "您现在要退出登录吗？", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)

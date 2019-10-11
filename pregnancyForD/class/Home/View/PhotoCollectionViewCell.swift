@@ -15,7 +15,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectBtn.contentMode = UIViewContentMode.center
+        selectBtn.contentMode = .center
     }
 
 }

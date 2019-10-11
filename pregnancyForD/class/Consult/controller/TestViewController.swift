@@ -15,6 +15,11 @@ protocol GetPhotoCenterDelegate : NSObjectProtocol {
     func getImage()->UIImage
 }
 
+extension GetPhotoCenterDelegate {
+    func getPhotoCenter()->CGPoint { .zero }
+    func getImage()->UIImage { return UIImage() }
+}
+
 class TestViewController: UIViewController {
     
     var patientId : NSNumber?     //换取token   获取患者信息   获取咨询信息   罗延琼
@@ -114,8 +119,8 @@ class TestViewController: UIViewController {
             SharePlayer.shareIntance.audioPlayer.isPlaying
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(TestViewController.requestData), name: NSNotification.Name.init(RejectConsultSuccess), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(TestViewController.requestData), name: NSNotification.Name.init(ReplyConsultSuccess), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(requestData), name: NSNotification.Name.init(RejectConsultSuccess), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(requestData), name: NSNotification.Name.init(ReplyConsultSuccess), object: nil)
 
         requestData()
     }
@@ -223,7 +228,7 @@ class TestViewController: UIViewController {
         return v
     }
     
-    func requestData(){    //张洁
+    @objc func requestData(){    //张洁
         
         SVProgressHUD.show()
         
@@ -387,13 +392,13 @@ extension TestViewController {
 
 extension TestViewController : UINavigationControllerDelegate {
     
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         let pushTransition = PushAnimation()
         
         let p = photoCenterDelegate?.getPhotoCenter() ?? CGPoint.zero
         
-        if operation == UINavigationControllerOperation.push{
+        if operation == UINavigationController.Operation.push{
             pushTransition.aniType = .kAnimatorTransitionTypePush
             pushTransition.itemCenter = CGPoint.init(x: p.x, y: p.y + 64)
         }else{
@@ -409,7 +414,7 @@ extension TestViewController : UINavigationControllerDelegate {
 }
 
 extension TestViewController : UIWebViewDelegate{
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool{
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool{
         let s = request.url?.absoluteString
         if s == "app://reload"{
             webView.loadRequest(URLRequest.init(url: URL.init(string: url!)!))

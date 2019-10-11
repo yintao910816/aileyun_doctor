@@ -58,7 +58,7 @@ class LoginViewController: UIViewController {
             make.left.right.top.equalTo(containerV)
             make.height.equalTo(80)
         }
-        aileyunImgV.contentMode = UIViewContentMode.scaleAspectFit
+        aileyunImgV.contentMode = .scaleAspectFit
         
         let headL = UILabel()
         containerV.addSubview(headL)
@@ -129,11 +129,11 @@ class LoginViewController: UIViewController {
             make.height.equalTo(30)
         }
         getCodeBtn.layer.cornerRadius = 5
-        getCodeBtn.setTitle("获取验证码", for: UIControlState.normal)
+        getCodeBtn.setTitle("获取验证码", for: .normal)
         getCodeBtn.titleLabel?.font = UIFont.init(name: kReguleFont, size: 13)
         getCodeBtn.backgroundColor = kDefaultThemeColor
         
-        getCodeBtn.addTarget(self, action: #selector(LoginViewController.startCount), for: UIControlEvents.touchUpInside)
+        getCodeBtn.addTarget(self, action: #selector(startCount), for: .touchUpInside)
         
         let diviV = UIView()
         containerV.addSubview(diviV)
@@ -153,11 +153,11 @@ class LoginViewController: UIViewController {
             make.right.equalTo(containerV).offset(-40)
             make.height.equalTo(40)
         }
-        loginBtn.setTitle("登 录", for: UIControlState.normal)
+        loginBtn.setTitle("登 录", for: .normal)
         loginBtn.layer.cornerRadius = 10
         loginBtn.backgroundColor = kDefaultThemeColor
         
-        loginBtn.addTarget(self, action: #selector(LoginViewController.login), for: UIControlEvents.touchUpInside)
+        loginBtn.addTarget(self, action: #selector(login), for: .touchUpInside)
         
         #if DEBUG
         cellphoneTF.text = "13645358516"
@@ -176,7 +176,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func login(){
+    @objc func login(){
         
         guard cellphoneTF.text != "" && cellphoneTF.text != nil else {
             HCShowError(info: "请输入手机号码！")
@@ -205,11 +205,11 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
     func observeKeyboard() -> () {
         //注册键盘出现的通知
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
     }
     
-    func keyboardShow() -> () {
+    @objc func keyboardShow() -> () {
         let rect = CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: 400)
         UIView.animate(withDuration: 0.25) {[weak self]()in
             self?.containerV.frame = rect
@@ -258,7 +258,7 @@ extension LoginViewController : UITextFieldDelegate {
     
     
     
-    func startCount(){
+    @objc func startCount(){
         guard checkIsPhone(self.cellphoneTF.text!) else{
             HCShowError(info: "请输入正确的手机号码！")
             return
@@ -266,17 +266,18 @@ extension LoginViewController : UITextFieldDelegate {
         SVProgressHUD.show(withStatus: "获取中...")
         HttpRequestManager.shareIntance.SendSms(self.cellphoneTF.text!) { [weak self](success, message) in
             SVProgressHUD.dismiss()
+            guard let strongSelf = self else { return }
             if success {
                 HCShowInfo(info: "获取验证码成功！")
                 self?.count = 0
-                self?.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(LoginViewController.showSecond), userInfo: nil, repeats: true)
+                self?.timer = Timer.scheduledTimer(timeInterval: 1, target: strongSelf, selector: #selector(strongSelf.showSecond), userInfo: nil, repeats: true)
             }else{
                 SVProgressHUD.showError(withStatus: message)
             }
         }
     }
     
-    func showSecond()->(){
+    @objc func showSecond() {
         
         count = count + 1
         if count == KMaxSeconds {
@@ -285,7 +286,7 @@ extension LoginViewController : UITextFieldDelegate {
         }else{
             let showString = String.init(format: "%ds重新获取", KMaxSeconds - count)
             getCodeBtn.isEnabled = false
-            getCodeBtn.setTitle(showString, for: UIControlState.normal)
+            getCodeBtn.setTitle(showString, for: .normal)
             getCodeBtn.backgroundColor = UIColor.gray
         }
     }
@@ -294,7 +295,7 @@ extension LoginViewController : UITextFieldDelegate {
     func resetCodeBtn(){
         
         getCodeBtn.isEnabled = true
-        getCodeBtn.setTitle("获取验证码", for: UIControlState.normal)
+        getCodeBtn.setTitle("获取验证码", for: .normal)
         getCodeBtn.backgroundColor = kDefaultThemeColor
     }
     

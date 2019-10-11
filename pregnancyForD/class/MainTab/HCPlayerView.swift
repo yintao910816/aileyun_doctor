@@ -48,7 +48,7 @@ class HCPlayerView: UIView {
         // 从最小值滑向最大值时杆的颜色
         slider.minimumTrackTintColor = UIColor.white
         // 在滑块圆按钮添加图片
-        slider.setThumbImage(UIImage(named:"slider_thumb"), for: UIControlState.normal)
+        slider.setThumbImage(UIImage(named:"slider_thumb"), for: .normal)
         
         progressView = UIProgressView.init()
         progressView.backgroundColor = UIColor.lightGray
@@ -81,15 +81,15 @@ class HCPlayerView: UIView {
             make.width.height.equalTo(30)
         }
         
-        playBtn.setImage(UIImage(named: "player_pause"), for: UIControlState.normal)
-        playBtn.addTarget(self, action: #selector(HCPlayerView.playAndPause) , for: UIControlEvents.touchUpInside)
+        playBtn.setImage(UIImage(named: "player_pause"), for: .normal)
+        playBtn.addTarget(self, action: #selector(playAndPause) , for: .touchUpInside)
         
         // 按下的时候
-        slider.addTarget(self, action: #selector(HCPlayerView.sliderTouchDown), for: UIControlEvents.touchDown)
+        slider.addTarget(self, action: #selector(sliderTouchDown), for: .touchDown)
         // 弹起的时候
-        slider.addTarget(self, action: #selector(HCPlayerView.sliderTouchUpOut), for: UIControlEvents.touchUpOutside)
-        slider.addTarget(self, action: #selector(HCPlayerView.sliderTouchUpOut), for: UIControlEvents.touchUpInside)
-        slider.addTarget(self, action: #selector(HCPlayerView.sliderTouchUpOut), for: UIControlEvents.touchCancel)
+        slider.addTarget(self, action: #selector(sliderTouchUpOut), for: .touchUpOutside)
+        slider.addTarget(self, action: #selector(sliderTouchUpOut), for: .touchUpInside)
+        slider.addTarget(self, action: #selector(sliderTouchUpOut), for: .touchCancel)
         
     }
     
@@ -104,21 +104,21 @@ class HCPlayerView: UIView {
     }
     
     
-    func sliderTouchDown(slider:UISlider){
+    @objc func sliderTouchDown(slider:UISlider){
         self.sliding = true
     }
     
-    func sliderTouchUpOut(slider:UISlider){
+    @objc func sliderTouchUpOut(slider:UISlider){
         delegate?.zzplayer(playerView: self, sliderTouchUpOut: slider)
     }
     
-    func playAndPause(btn:UIButton){
+    @objc func playAndPause(btn:UIButton){
         let tmp = !playing
         playing = tmp
         if playing {
-            playBtn.setImage(UIImage(named: "player_pause"), for: UIControlState.normal)
+            playBtn.setImage(UIImage(named: "player_pause"), for: .normal)
         }else{
-            playBtn.setImage(UIImage(named: "player_play"), for: UIControlState.normal)
+            playBtn.setImage(UIImage(named: "player_play"), for: .normal)
         }
         delegate?.zzplayer(playerView: self, playAndPause: btn)
     }

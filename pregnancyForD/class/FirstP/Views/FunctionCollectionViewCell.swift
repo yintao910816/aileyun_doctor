@@ -12,7 +12,7 @@ class FunctionCollectionViewCell: UICollectionViewCell {
     
     lazy var imgV : UIImageView = {
         let i = UIImageView()
-        i.contentMode = UIViewContentMode.scaleAspectFit
+        i.contentMode = .scaleAspectFit
         return i
     }()
     lazy var titleL : UILabel = {

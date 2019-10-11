@@ -17,8 +17,8 @@ class TemplateTableViewController: BaseTableViewController {
     lazy var GroupHeaderView : UIView = {
         let containerV = UIView.init(frame: CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: 50))
         let plusBtn = UIButton.init(frame: CGRect.init(x: 16, y: 10, width: 30, height: 30))
-        plusBtn.setBackgroundImage(UIImage.init(named: "HC-jiahao"), for: UIControlState.normal)
-        plusBtn.contentMode = UIViewContentMode.center
+        plusBtn.setBackgroundImage(UIImage.init(named: "HC-jiahao"), for: .normal)
+        plusBtn.contentMode = .center
         containerV.addSubview(plusBtn)
         
         let addL = UILabel.init(frame: CGRect.init(x: 50, y: 10, width: 100, height: 30))
@@ -27,7 +27,7 @@ class TemplateTableViewController: BaseTableViewController {
         addL.font = UIFont.systemFont(ofSize: 22)
         addL.textColor = kDefaultThemeColor
         
-        let tapG = UITapGestureRecognizer.init(target: self, action: #selector(TemplateTableViewController.addAction))
+        let tapG = UITapGestureRecognizer.init(target: self, action: #selector(addAction))
         containerV.addGestureRecognizer(tapG)
         
         let divisionV = UIView.init(frame: CGRect.init(x: 0, y: 50, width: SCREEN_WIDTH, height: 1))
@@ -94,8 +94,8 @@ class TemplateTableViewController: BaseTableViewController {
     }
     
     //返回编辑类型，滑动删除
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.delete
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
     }
     
     //在这里修改删除按钮的文字
@@ -104,8 +104,8 @@ class TemplateTableViewController: BaseTableViewController {
     }
     
     //点击删除按钮的响应方法，在这里处理删除的逻辑
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             
             if indexPath.row < 2 {
                 HCShowError(info: "系统自带分组！")
@@ -127,7 +127,7 @@ class TemplateTableViewController: BaseTableViewController {
 
 extension TemplateTableViewController {
     
-    func addAction(){
+    @objc func addAction(){
         let editVC = EditViewController()
         editVC.isAddTemplate = true
         editVC.changeTextBlock = {[unowned self](new) in

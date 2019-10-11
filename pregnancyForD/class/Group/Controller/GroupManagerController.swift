@@ -85,7 +85,7 @@ class GroupManagerController: UIViewController {
         var frame = inputF.frame
         frame.size.width = 10
         let leftV = UIView.init(frame: CGRect.init(origin: CGPoint.init(), size: frame.size))
-        inputF.leftViewMode = UITextFieldViewMode.always
+        inputF.leftViewMode = .always
         inputF.leftView = leftV
         
         self.view.addSubview(editBtn)
@@ -94,13 +94,13 @@ class GroupManagerController: UIViewController {
             make.top.equalTo(inputF).offset(5)
             make.width.equalTo(80)
         }
-        editBtn.setTitle("添加分组", for: UIControlState.normal)
-        editBtn.setTitle("修改分组", for: UIControlState.selected)
+        editBtn.setTitle("添加分组", for: .normal)
+        editBtn.setTitle("修改分组", for: .selected)
         editBtn.layer.cornerRadius = 5
         editBtn.titleLabel?.textColor = UIColor.white
         editBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         editBtn.backgroundColor = kDefaultThemeColor
-        editBtn.addTarget(self, action: #selector(GroupManagerController.textConfirmAction), for: UIControlEvents.touchUpInside)
+        editBtn.addTarget(self, action: #selector(textConfirmAction), for: UIControl.Event.touchUpInside)
         
         let infoL = UILabel()
         self.view.addSubview(infoL)
@@ -301,13 +301,13 @@ extension GroupManagerController {
         }
     }
 
-    func textConfirmAction(){
+    @objc func textConfirmAction(){
         
         if editBtn.isSelected == false {
             // 添加分组
             if inputF.text != nil && inputF.text != "" {
                 let str = inputF.text!
-                if str.characters.count > 10 {
+                if str.count > 10 {
                     HCShowError(info: "字符不可超过十个！")
                 }else{
                     HttpRequestManager.shareIntance.tagsOperation(tagId: 0, tagname: inputF.text!, opsType: 3) { [unowned self](success, array, message) in
@@ -336,7 +336,7 @@ extension GroupManagerController {
             }else{
                 if inputF.text != "" && inputF.text != nil{
                     let str = inputF.text!
-                    if str.characters.count > 10 {
+                    if str.count > 10 {
                         HCShowError(info: "字符不可超过十个！")
                     }else{
                         HttpRequestManager.shareIntance.tagsOperation(tagId: (groupArray![selectedRow! - 1].id?.intValue)!, tagname: inputF.text!, opsType: 1, callback: { [unowned self](success, array, message) in

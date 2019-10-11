@@ -19,7 +19,7 @@ class ShowPicturesViewController: UIViewController {
         let imagV = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
         imagV.isUserInteractionEnabled = true
         imagV.isMultipleTouchEnabled = true
-        imagV.contentMode = UIViewContentMode.scaleAspectFit
+        imagV.contentMode = .scaleAspectFit
         return imagV
     }()
     
@@ -27,7 +27,7 @@ class ShowPicturesViewController: UIViewController {
         let imagV = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
         imagV.isUserInteractionEnabled = true
         imagV.isMultipleTouchEnabled = true
-        imagV.contentMode = UIViewContentMode.scaleAspectFit
+        imagV.contentMode = .scaleAspectFit
         return imagV
     }()
     
@@ -48,7 +48,7 @@ class ShowPicturesViewController: UIViewController {
     }()
     
     lazy var progressV : UIProgressView = {
-        let p = UIProgressView.init(progressViewStyle: UIProgressViewStyle.default)
+        let p = UIProgressView.init(progressViewStyle: .default)
         p.progressTintColor = kDefaultThemeColor
         p.backgroundColor = kLightGrayColor
         return p
@@ -181,11 +181,11 @@ class ShowPicturesViewController: UIViewController {
     }
     
     
-    func showVideoV(){
+    @objc func showVideoV(){
         self.navigationController?.pushViewController(ShowVideoViewController(), animated: true)
     }
     
-    func showPicCollectV(){
+    @objc func showPicCollectV(){
         let pVC = PicCollectionViewController()
         pVC.totalIndex = totalIndex
         pVC.fileURLString = fileURLString
@@ -270,7 +270,7 @@ extension ShowPicturesViewController : UIScrollViewDelegate {
         currentImgV = nextImgV
         nextImgV = tempImgV
         
-        scrollV.bringSubview(toFront: currentImgScrollV)
+        scrollV.bringSubviewToFront(currentImgScrollV)
         currentImgScrollV.frame = CGRect(x: SCREEN_WIDTH, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
         scrollV.contentOffset = CGPoint(x: SCREEN_WIDTH, y: 0)
     }

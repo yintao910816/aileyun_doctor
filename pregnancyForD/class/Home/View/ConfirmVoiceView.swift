@@ -27,7 +27,7 @@ class ConfirmVoiceView: UIView {
             make.left.equalTo(self).offset(2)
             make.width.equalTo(SCREEN_WIDTH * 0.4)
         })
-        auditionBtn.addTarget(self, action: #selector(ConfirmVoiceView.startPlaying), for: UIControlEvents.touchUpInside)
+        auditionBtn.addTarget(self, action: #selector(startPlaying), for: .touchUpInside)
     
         let deleteBtn = DeleteButton.init(frame: CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH * 0.3, height: 40))
         self.addSubview(deleteBtn)
@@ -37,7 +37,7 @@ class ConfirmVoiceView: UIView {
         make.left.equalTo(auditionBtn.snp.right).offset(2)
         make.width.equalTo(SCREEN_WIDTH * 0.3)
         })
-        deleteBtn.addTarget(self, action: #selector(ConfirmVoiceView.deleteVoice), for: UIControlEvents.touchUpInside)
+        deleteBtn.addTarget(self, action: #selector(deleteVoice), for: .touchUpInside)
     
         let sendBtn = SendButton.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 40))
         self.addSubview(sendBtn)
@@ -47,26 +47,26 @@ class ConfirmVoiceView: UIView {
         make.left.equalTo(deleteBtn.snp.right).offset(2)
         make.right.equalTo(self).offset(-2)
         })
-        sendBtn.addTarget(self, action: #selector(ConfirmVoiceView.sendVoice), for: UIControlEvents.touchUpInside)
+        sendBtn.addTarget(self, action: #selector(sendVoice), for: .touchUpInside)
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    func startPlaying(){
+    @objc func startPlaying(){
         if let playBlock = playBlock{
             playBlock()
         }
     }
     
-    func deleteVoice(){
+    @objc func deleteVoice(){
         if let deleteBlock = deleteBlock{
             deleteBlock()
         }
     }
     
-    func sendVoice(){
+    @objc func sendVoice(){
         if let sendBlock = sendBlock{
             sendBlock()
         }

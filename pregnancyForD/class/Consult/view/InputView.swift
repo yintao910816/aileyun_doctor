@@ -119,7 +119,7 @@ class InputView: UIView {
         confirV.playBlock = {[weak self]()in
             let audioSession = AVAudioSession.sharedInstance()
             do {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+                try audioSession.setCategory(AVAudioSession.Category.playback)
             } catch {
             }
             
@@ -216,8 +216,8 @@ class InputView: UIView {
         
         addTargetForBtn()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(InputView.keboardWillShow(anotification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(InputView.keboardWillDismiss(anotification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keboardWillShow(anotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keboardWillDismiss(anotification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func getReady(){
@@ -232,16 +232,16 @@ class InputView: UIView {
     }
     
     func addTargetForBtn(){
-        switchBtn.addTarget(self, action: #selector(InputView.switchToVoice(btn:)), for: .touchUpInside)
+        switchBtn.addTarget(self, action: #selector(switchToVoice(btn:)), for: .touchUpInside)
         
-        speakBtn.addTarget(self, action: #selector(InputView.speakBtnTouchDown(btn:)), for: .touchDown)
-        speakBtn.addTarget(self, action: #selector(InputView.speakBtnTouchUpInside(btn:)), for: .touchUpInside)
-        speakBtn.addTarget(self, action: #selector(InputView.speakBtnDragInside(btn:)), for: .touchDragInside)
-        speakBtn.addTarget(self, action: #selector(InputView.speakBtnDragOutside(btn:)), for: .touchDragOutside)
-        speakBtn.addTarget(self, action: #selector(InputView.speakBtnTouchUpOutside(btn:)), for: .touchUpOutside)
+        speakBtn.addTarget(self, action: #selector(speakBtnTouchDown(btn:)), for: .touchDown)
+        speakBtn.addTarget(self, action: #selector(speakBtnTouchUpInside(btn:)), for: .touchUpInside)
+        speakBtn.addTarget(self, action: #selector(speakBtnDragInside(btn:)), for: .touchDragInside)
+        speakBtn.addTarget(self, action: #selector(speakBtnDragOutside(btn:)), for: .touchDragOutside)
+        speakBtn.addTarget(self, action: #selector(speakBtnTouchUpOutside(btn:)), for: .touchUpOutside)
         
-        photoChooseBtn.addTarget(self, action: #selector(InputView.photoPickerBtn(btn:)), for: .touchUpInside)
-        templateBtn.addTarget(self, action: #selector(InputView.templateBtn(btn:)), for:.touchUpInside)
+        photoChooseBtn.addTarget(self, action: #selector(photoPickerBtn(btn:)), for: .touchUpInside)
+        templateBtn.addTarget(self, action: #selector(templateBtn(btn:)), for:.touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -257,7 +257,7 @@ class InputView: UIView {
         NotificationCenter.default.removeObserver(self)
     }
         
-     func switchToVoice(btn : UIButton) {
+    @objc func switchToVoice(btn : UIButton) {
         if photoIsShow == true {
             photoPickerBtn(btn: photoChooseBtn)
         }
@@ -290,7 +290,7 @@ class InputView: UIView {
         }
     }
         
-    func photoPickerBtn(btn : UIButton) {
+    @objc func photoPickerBtn(btn : UIButton) {
         if photoIsShow == false {
             switchBtn.isSelected = false
             speakBtn.isHidden = true
@@ -350,7 +350,7 @@ class InputView: UIView {
         }
     }
         
-    func templateBtn(btn : UIButton) {
+    @objc func templateBtn(btn : UIButton) {
         if photoIsShow == true {
             photoPickerBtn(btn: photoChooseBtn)
         }
@@ -371,10 +371,10 @@ class InputView: UIView {
         inputTextView.becomeFirstResponder()
     }
     
-    func speakBtnTouchDown(btn : UIButton) {
+    @objc func speakBtnTouchDown(btn : UIButton) {
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try audioSession.setCategory(AVAudioSession.Category.playAndRecord)
         } catch {
         }
         
@@ -389,7 +389,7 @@ class InputView: UIView {
         voiceRecordingV.show()
     }
         
-    func speakBtnTouchUpInside(btn : UIButton) {
+    @objc func speakBtnTouchUpInside(btn : UIButton) {
         audioRecorder?.stop()
     
         voiceConfirmView.frame = CGRect.init(x: 0, y: 44, width: SCREEN_WIDTH, height: 44)
@@ -414,17 +414,17 @@ class InputView: UIView {
         }
     }
         
-    func speakBtnDragOutside(btn : UIButton) {
+    @objc func speakBtnDragOutside(btn : UIButton) {
         HCPrint(message: "dragOutside")
         voiceRecordingV.infoL.text = "松开手指，取消录音"
     }
     
-    func speakBtnDragInside(btn : UIButton) {
+    @objc func speakBtnDragInside(btn : UIButton) {
         HCPrint(message: "dragInside")
         voiceRecordingV.infoL.text = "上滑手指，取消录音"
     }
         
-    func speakBtnTouchUpOutside(btn : UIButton) {
+    @objc func speakBtnTouchUpOutside(btn : UIButton) {
         audioRecorder?.stop()
         audioRecorder?.deleteRecording()
         
@@ -518,9 +518,9 @@ extension InputView {
 
 extension InputView {
     
-    func keboardWillShow(anotification : NSNotification) {
+    @objc func keboardWillShow(anotification : NSNotification) {
         let space = AppDelegate.shareIntance.space
-        let keboardFrame = anotification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! CGRect
+        let keboardFrame = anotification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
         extraH = keboardFrame.height
         var tFrame = self.frame;
         tFrame.origin.y = keboardFrame.origin.y - tFrame.size.height - 44 - space.topSpace
@@ -532,7 +532,7 @@ extension InputView {
         }
     }
     
-    func keboardWillDismiss(anotification : NSNotification){
+    @objc func keboardWillDismiss(anotification : NSNotification){
         if let block = contentSizeBlock{
             block(-extraH)
         }
