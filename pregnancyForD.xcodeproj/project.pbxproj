@@ -1752,6 +1752,7 @@
 					"$(PROJECT_DIR)/pregnancyForD/lib/VoiceConvert/lib",
 					"$(PROJECT_DIR)/pregnancyForD/lib/weixin",
 				);
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1816,6 +1817,7 @@
 					"$(PROJECT_DIR)/pregnancyForD/lib/VoiceConvert/lib",
 					"$(PROJECT_DIR)/pregnancyForD/lib/weixin",
 				);
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
