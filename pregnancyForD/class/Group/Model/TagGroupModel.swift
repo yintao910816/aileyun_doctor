@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import HandyJSON
 
-class TagGroupModel: NSObject {
+class TagGroupModel: NSObject, HandyJSON {
     
     var tagName : String?
     var doctorId : NSNumber?
@@ -17,14 +18,6 @@ class TagGroupModel: NSObject {
     
     var isSelected = false;
     
-    convenience init(_ dic : [String : Any]) {
-        self.init()
-        setValuesForKeys(dic)
-    }
-    
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
-        //
-    }
-
+    override required init() { }
 
 }

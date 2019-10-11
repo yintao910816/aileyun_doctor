@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HandyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
@@ -33,7 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         let dic = UserDefaults.standard.value(forKey: kCurrentUser)
         
         if let dic = dic{
-            UserManager.shareIntance.currentUser = UserModel.init(dic as! [String : Any])
+            
+            UserManager.shareIntance.currentUser = JSONDeserializer<UserModel>.deserializeFrom(dict: dic as! [String : Any])
             isLogin = true
             Login = true
         }else{

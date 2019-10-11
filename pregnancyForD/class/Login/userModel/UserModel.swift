@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import HandyJSON
 
-class UserModel: NSObject {
+class UserModel: NSObject, HandyJSON {
     
     
     var goodProjectList : NSArray?
@@ -39,13 +40,16 @@ class UserModel: NSObject {
     
     var openId : String?
     
-    convenience init(_ dic : [String : Any]) {
-        self.init()
-        setValuesForKeys(dic)
-    }
+//    convenience init(_ dic : [String : Any]) {
+//        self.init()
+//        setValuesForKeys(dic)
+//    }
+//
+//    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+//        //
+//    }
     
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
-        //
+    required override init() {
+        
     }
-    
 }

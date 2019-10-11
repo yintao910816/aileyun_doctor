@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import HandyJSON
 
-class ConsultPickModel: NSObject {
+class ConsultPickModel: NSObject, HandyJSON {
     
     var consultId : NSNumber?
 
@@ -50,11 +51,7 @@ class ConsultPickModel: NSObject {
     var imageArr : [String]?
     
     var voiceStr : String?
-    
-    override init() {
-        super.init()
-    }
-    
+        
     convenience init(type : String, model : PatientReplyModel, replyM : ReplyDetailModel?) {
         self.init()
         self.type = type
@@ -129,11 +126,6 @@ class ConsultPickModel: NSObject {
         }
     }
     
-    // MARK:- 构造函数
-    init(_ dict : [String : Any]) {
-        super.init()
-        setValuesForKeys(dict)
-    }
-    
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {}
+    override required init() { }
+
 }

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import HandyJSON
 
-class PatientModel: NSObject {
+class PatientModel: NSObject, HandyJSON {
     
 //    var patientAge : NSNull?
 //    var tagName : NSNull?
@@ -76,14 +77,6 @@ class PatientModel: NSObject {
         }
     }
     
-    
-    
-    convenience init(_ dic : [String : Any]) {
-        self.init()
-        setValuesForKeys(dic)
-    }
-    
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
-        //
-    }
+    override required init() { }
+
 }

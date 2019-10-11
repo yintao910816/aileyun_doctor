@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import HandyJSON
 
-class SearchPatientModel: NSObject {
+class SearchPatientModel: NSObject, HandyJSON {
     
     var patientId : NSNumber?
     var doctorIds : String?
@@ -19,13 +20,7 @@ class SearchPatientModel: NSObject {
     var headPhoto : String?
     var sex : NSNumber?
 
+    required override init() {
 
-    convenience init(_ dic : [String : Any]) {
-        self.init()
-        setValuesForKeys(dic)
-    }
-    
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
-        //
     }
 }

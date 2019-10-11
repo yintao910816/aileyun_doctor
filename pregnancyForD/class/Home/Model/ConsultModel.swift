@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import HandyJSON
 
-class ConsultModel: NSObject {
+class ConsultModel: NSObject, HandyJSON {
     
     var content : String?
     var patientName : String?
@@ -28,15 +29,7 @@ class ConsultModel: NSObject {
 //    var tagName : String?
 //    var tagValue : NSNumber?
 //    var patientNickName : String?
-    
-    // MARK:- 构造函数
-    init(_ dict : [String : Any]) {
-        super.init()
         
-        setValuesForKeys(dict)
-    }
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {}
-    
     override var description: String {
         if let headImg = headImg {
             return String.init(format: "headImg: %@", self.headImg!)
@@ -45,5 +38,6 @@ class ConsultModel: NSObject {
         }
     }
   
+    override required init() { }
 
 }

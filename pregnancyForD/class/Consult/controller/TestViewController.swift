@@ -355,35 +355,34 @@ extension TestViewController {
             viewM.model = consultM
             tempArr.append(viewM)
             
-            if let arr = consult.replyList{
-                for i in 0..<arr.count{
-                    let model = arr[i] as! ReplyDetailModel
-                    
-                    //文字
-                    if model.replyContent != "" && model.replyContent != nil{
-                        let picM = ConsultPickModel.init(type: TypeText, model: consult, replyM : model)
+            for i in 0..<consult.replyList.count{
+                let model = consult.replyList[i]
+                
+                //文字
+                if model.replyContent != "" && model.replyContent != nil{
+                    let picM = ConsultPickModel.init(type: TypeText, model: consult, replyM : model)
+                    let viewM = ConsultViewmodel.init()
+                    viewM.model = picM
+                    tempArr.append(viewM)
+                }
+                //语音或图片
+                if let imgArr = model.replyImglist{
+                    guard imgArr.count > 0 else{continue}
+                    let str = imgArr[0] as! String
+                    if (str.contains("jpg") || str.contains("png")){
+                        let picM = ConsultPickModel.init(type: TypePic, model: consult, replyM : model)
+                        let viewM = ConsultViewmodel.init()
+                        viewM.model = picM
+                        tempArr.append(viewM)
+                    }else{
+                        let picM = ConsultPickModel.init(type: TypeVoice, model: consult, replyM : model)
                         let viewM = ConsultViewmodel.init()
                         viewM.model = picM
                         tempArr.append(viewM)
                     }
-                    //语音或图片
-                    if let imgArr = model.replyImglist{
-                        guard imgArr.count > 0 else{continue}
-                        let str = imgArr[0] as! String
-                        if (str.contains("jpg") || str.contains("png")){
-                            let picM = ConsultPickModel.init(type: TypePic, model: consult, replyM : model)
-                            let viewM = ConsultViewmodel.init()
-                            viewM.model = picM
-                            tempArr.append(viewM)
-                        }else{
-                            let picM = ConsultPickModel.init(type: TypeVoice, model: consult, replyM : model)
-                            let viewM = ConsultViewmodel.init()
-                            viewM.model = picM
-                            tempArr.append(viewM)
-                        }
-                    }
                 }
             }
+
             readyArr.append(tempArr)
         }
         viewModels = readyArr

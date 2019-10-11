@@ -7,24 +7,20 @@
 //
 
 import UIKit
+import HandyJSON
 
-class GroupPatientModels: NSObject {
+class GroupPatientModels: NSObject,HandyJSON {
     
     var doctorId : String?
     var docTagName : String?
     var doctorIds : String?
-    var patientList : NSArray?{
-        didSet{
-            count = (patientList?.count)!
-        }
+    var patientList: [PatientModel] = []
+    
+    var count : NSInteger {
+        get { return patientList.count }
     }
     
-    
-    var count : NSInteger = 0
     var isSelected : Bool = false
-
-    override static func mj_objectClassInArray() -> [AnyHashable : Any]! {
-        return ["patientList" : PatientModel.classForCoder()]
-    }
-
+    
+    override required init() { }
 }

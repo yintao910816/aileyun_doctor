@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import HandyJSON
 
-class HomeFunctionModel: NSObject {
+class HomeFunctionModel: NSObject, HandyJSON {
     
     var isShow : NSNumber?
     var name : String?
@@ -23,13 +24,7 @@ class HomeFunctionModel: NSObject {
     var createdate : String?
     var url : String?
 
-    
-    // MARK:- 构造函数
-    init(_ dict : [String : Any]) {
-        super.init()
+    required override init() {
         
-        setValuesForKeys(dict)
     }
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {}
-
 }

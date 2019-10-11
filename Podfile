@@ -16,6 +16,7 @@ pod 'SDWebImage'
 pod 'SVProgressHUD'
 pod 'SnapKit'
 pod 'MJRefresh'
+pod 'HandyJSON'
 
 #pod 'WechatOpenSDK'
 

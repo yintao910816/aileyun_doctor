@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import HandyJSON
 
-class PatientReplyModel: NSObject {
+class PatientReplyModel: NSObject,HandyJSON {
     
     var content : String?
     var patientName : String?
@@ -22,7 +23,7 @@ class PatientReplyModel: NSObject {
     var lastestTime : NSNumber?
     var headImg : String?
     
-    var replyList : NSArray?
+    var replyList: [ReplyDetailModel] = []
     var consultImg : String?
 
     
@@ -30,8 +31,7 @@ class PatientReplyModel: NSObject {
     
 //    var doctorId : NSNumber?
 
+    override required init() { }
 
-    override static func mj_objectClassInArray() -> [AnyHashable : Any]! {
-        return ["replyList" : ReplyDetailModel.classForCoder()]
-    }
 }
+

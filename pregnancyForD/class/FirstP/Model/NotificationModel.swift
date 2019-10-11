@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import HandyJSON
 
-class NotificationModel: NSObject {
+class NotificationModel: NSObject, HandyJSON {
     
     var content : String?
     var status : NSNumber?
@@ -21,13 +22,8 @@ class NotificationModel: NSObject {
     var type : NSNumber?
     var createTime : String?
     var url : String?
-    
-    
-    // MARK:- 构造函数
-    init(_ dict : [String : Any]) {
-        super.init()
         
-        setValuesForKeys(dict)
+    override required init() {
+        
     }
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {}
 }

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import HandyJSON
 
-class ReplyDetailModel: NSObject {
+class ReplyDetailModel: NSObject, HandyJSON {
     
     
     var doctorId : NSNumber?
@@ -27,5 +28,7 @@ class ReplyDetailModel: NSObject {
     var replyTime : String?
     var doctorHeadImg : String?
 
-
+    required override init() {
+        
+    }
 }

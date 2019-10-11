@@ -7,22 +7,14 @@
 //
 
 import UIKit
+import HandyJSON
 
-class TemplateModel: NSObject {
+class TemplateModel: NSObject, HandyJSON {
     
     var templateValue : NSNumber?
     var docId : NSNumber?
     var templateContent : String?
     var id : NSNumber?
-    
-    
-    // MARK:- 构造函数
-    init(_ dict : [String : Any]) {
-        super.init()
-        
-        setValuesForKeys(dict)
-    }
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {}
 
-
+    override required init() { }
 }

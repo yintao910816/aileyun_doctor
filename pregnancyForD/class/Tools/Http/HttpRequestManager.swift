@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import HandyJSON
 
 class HttpRequestManager {
     
@@ -132,7 +133,7 @@ class HttpRequestManager {
                     
                     FindRealClassForDicValue(dic: j)
                     
-                    let tempM = TemplateModel.init(j)
+                    let tempM = JSONDeserializer<TemplateModel>.deserializeFrom(dict: j)!
                     arr.append(tempM)
                 }
                 callback(true, arr, "获取信息成功！")
@@ -159,7 +160,7 @@ class HttpRequestManager {
                 for i in dicArr{
                     let j = i as! [String : Any]
                     
-                    let tempM = TagGroupModel.init(j)
+                    let tempM = JSONDeserializer<TagGroupModel>.deserializeFrom(dict: j)!
                     arr.append(tempM)
                 }
                 callback(true, arr, "获取分组信息成功！")
@@ -179,7 +180,7 @@ class HttpRequestManager {
             if ccb.infoCode == 200 {
                 let dic = ccb.data as! [String : Any]
                 
-                let patientModel = PatientModel.init(dic)
+                let patientModel = JSONDeserializer<PatientModel>.deserializeFrom(dict: dic)
                 callback(true, patientModel, "获取信息成功！")
             }else{
                 callback(false, nil, ccb.message)
@@ -210,8 +211,8 @@ class HttpRequestManager {
                 let dic = ccb.data as! [String : Any]
 //                FindRealClassForDicValue(dic: dic)
 //                HCPrint(message: dic)
-                let userModel = UserModel.init(dic)
-                
+//                let userModel = UserModel.init(dic)
+                let userModel = JSONDeserializer<UserModel>.deserializeFrom(dict: dic)
                 callback(true, userModel, "获取信息成功！")
             }else{
                 callback(false, nil, ccb.message)
@@ -275,7 +276,7 @@ class HttpRequestManager {
                 
                 for i in tempArray {
                     let tempI = i as! [String : Any]
-                    let j = ConsultModel.init(tempI)
+                    let j = JSONDeserializer<ConsultModel>.deserializeFrom(dict: tempI)!
                     patientLArray.append(j)
                 }
                 
@@ -293,15 +294,15 @@ class HttpRequestManager {
         HttpClient.shareIntance.POST(PATIENTLIST_URL, parameters: nil) { (result, ccb) in
             
             if ccb.infoCode == 200 {
-                let patientArray = NSMutableArray.init()
+                var patientArray = [PatientModel]()
 
                 let tempArray = ccb.data as! [Any]
                 for i in tempArray {
                     let tempI = i as! [String : Any]
-                    let j = PatientModel.init(tempI)
-                    patientArray.add(j)
+                    let j = JSONDeserializer<PatientModel>.deserializeFrom(dict: tempI)!
+                    patientArray.append(j)
                 }
-                callback(true, patientArray as! [PatientModel], "获取列表成功！")
+                callback(true, patientArray, "获取列表成功！")
             }else{
                 callback(false, nil, ccb.message)
             }
@@ -326,7 +327,9 @@ class HttpRequestManager {
                 
                 UserDefaults.standard.set(number, forKey: kCurrentUserPhone)
                 UserDefaults.standard.set(userDic, forKey: kCurrentUser)
-                callback(ccb.success(), UserModel.init(userDic), ccb.message)
+            
+//                callback(ccb.success(), UserModel.init(userDic), ccb.message)
+                callback(ccb.success(), JSONDeserializer<UserModel>.deserializeFrom(dict: userDic), ccb.message)
             }else{
                 callback(false, nil, ccb.message)
             }
@@ -448,7 +451,7 @@ class HttpRequestManager {
                 if let arr = arr {
                     var modelArr = [HomeFunctionModel]()
                     for i in arr {
-                        let model = HomeFunctionModel.init(i)
+                        let model = JSONDeserializer<HomeFunctionModel>.deserializeFrom(dict: i)!
                         modelArr.append(model)
                     }
                     
@@ -491,7 +494,7 @@ class HttpRequestManager {
                 if let arr = arr {
                     var modelArr = [HomeBannerModel]()
                     for i in arr {
-                        let model = HomeBannerModel.init(i)
+                        let model = JSONDeserializer<HomeBannerModel>.deserializeFrom(dict: i)!
                         modelArr.append(model)
                     }
                     callback(true, modelArr)
@@ -518,7 +521,7 @@ class HttpRequestManager {
                             if let arr = value as? [[String : Any]]{
                                 for i in arr{
 //                                    FindRealClassForDicValue(dic: i)
-                                    let model = ConsultMessageModel.init(i)
+                                    let model = JSONDeserializer<ConsultMessageModel>.deserializeFrom(dict: i)!
                                     modelArr.append(model)
                                 }
                             }
@@ -526,7 +529,8 @@ class HttpRequestManager {
                             if let arr = value as? [[String : Any]]{
                                 for i in arr{
 //                                    FindRealClassForDicValue(dic: i)
-                                    let model = NotificationModel.init(i)
+                                    let model = JSONDeserializer<NotificationModel>.deserializeFrom(dict: i)!
+
                                     notiArr.append(model)
                                 }
                             }
@@ -563,7 +567,7 @@ class HttpRequestManager {
                         for dic in referedGroupArr{
 //                            FindRealClassForDicValue(dic: dic)
 //                            HCPrint(message: "-----------------")
-                            let m = SearchPatientModel.init(dic)
+                            let m = JSONDeserializer<SearchPatientModel>.deserializeFrom(dict: dic)!
                             referArr.append(m)
                         }
                     }
@@ -571,8 +575,8 @@ class HttpRequestManager {
                         for dic in reproductiveGroupsArr{
 //                            FindRealClassForDicValue(dic: dic)
 //                            HCPrint(message: "-----------------")
-                            let m = SearchCycleModel.init(dic)
-                            reproductArr.append(m)
+                            let model = JSONDeserializer<SearchCycleModel>.deserializeFrom(dict: dic)!
+                            reproductArr.append(model)
                         }
                     }
                     callback(true, referArr, reproductArr)
@@ -608,7 +612,8 @@ class HttpRequestManager {
                 for i in tempArray {
                     let tempI = i as! [String : Any]
 //                    FindRealClassForDicValue(dic: tempI)
-                    let j = ConsultModel.init(tempI)
+                    let j = JSONDeserializer<ConsultModel>.deserializeFrom(dict: tempI)!
+
                     patientLArray.append(j)
                 }
                 callback(true, patientLArray, hasNext, "获取列表成功！")
@@ -649,7 +654,7 @@ class HttpRequestManager {
 //                                }
 //                            }
                             
-                            let j = PatientReplyModel.mj_object(withKeyValues: i)
+                            let j = JSONDeserializer<PatientReplyModel>.deserializeFrom(dict: i)
                             replyArr.append(j!)
                         }
                         callback(true, replyArr, hasNext, "获取列表成功！")
@@ -685,7 +690,7 @@ class HttpRequestManager {
 //                            }
 //                        }
                         
-                        let j = GroupPatientModels.mj_object(withKeyValues: i)
+                        let j = JSONDeserializer<GroupPatientModels>.deserializeFrom(dict: i)
                         groupModels.append(j!)
                     }
                 }

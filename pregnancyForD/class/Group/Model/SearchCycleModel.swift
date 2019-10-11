@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import HandyJSON
 
-class SearchCycleModel: NSObject {
+class SearchCycleModel: NSObject, HandyJSON {
     
     var doctorId : String?
     var patientId : String?
@@ -25,12 +26,7 @@ class SearchCycleModel: NSObject {
     var pId : String?
     var name_m : String?
 
-    convenience init(_ dic : [String : Any]) {
-        self.init()
-        setValuesForKeys(dic)
-    }
-    
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
-        //
+    required override init() {
+        
     }
 }

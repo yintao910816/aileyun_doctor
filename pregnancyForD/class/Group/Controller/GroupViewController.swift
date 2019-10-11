@@ -99,11 +99,9 @@ class GroupViewController: UIViewController {
     func dealWithData(arr : [GroupPatientModels]?){
         if let arr = arr{
             for i in arr{
-                if let pArr = i.patientList{
-                    for j in pArr{
-                        let t = j as! PatientModel
-                        t.doctorIds = i.doctorIds
-                    }
+                for j in i.patientList{
+                    let t = j as! PatientModel
+                    t.doctorIds = i.doctorIds
                 }
             }
         }
@@ -241,19 +239,17 @@ extension GroupViewController: UITableViewDataSource, UITableViewDelegate {
                 // 保存状态
                 tempData.isSelected = true
                 
-                if let patiArr = tempData.patientList {
-                    var indexPathArray = [IndexPath]()
-                    var tempRow = 1
-                    let arr = patiArr as! [PatientModel]
-                    for i in arr{
-                        tableviewArray.insert(i, at: indexPath.row + tempRow)
-                        indexPathArray.append(IndexPath.init(row: indexPath.row + tempRow, section: 0))
-                        tempRow = tempRow + 1
-                    }
-                    tableView.beginUpdates()
-                    tableView.insertRows(at: indexPathArray, with: .top)
-                    tableView.endUpdates()
+                var indexPathArray = [IndexPath]()
+                var tempRow = 1
+                let arr = tempData.patientList
+                for i in arr{
+                    tableviewArray.insert(i, at: indexPath.row + tempRow)
+                    indexPathArray.append(IndexPath.init(row: indexPath.row + tempRow, section: 0))
+                    tempRow = tempRow + 1
                 }
+                tableView.beginUpdates()
+                tableView.insertRows(at: indexPathArray, with: .top)
+                tableView.endUpdates()
             }
         }else{
             //GroupPatientTableViewCell
