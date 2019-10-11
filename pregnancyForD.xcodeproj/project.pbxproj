@@ -1253,11 +1253,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF871E9A1E9A11B600478686 /* Build configuration list for PBXNativeTarget "pregnancyForD" */;
 			buildPhases = (
-				F9810B325030579C8D81C70E /* [CP] Check Pods Manifest.lock */,
+				D25985C94CA70FE538053424 /* [CP] Check Pods Manifest.lock */,
 				CF871E841E9A11B600478686 /* Sources */,
 				CF871E851E9A11B600478686 /* Frameworks */,
 				CF871E861E9A11B600478686 /* Resources */,
-				71301F9E196A667EAC0470CC /* [CP] Embed Pods Frameworks */,
+				A036C079D70B3F04811C2386 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1457,7 +1457,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		71301F9E196A667EAC0470CC /* [CP] Embed Pods Frameworks */ = {
+		A036C079D70B3F04811C2386 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1489,7 +1489,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pregnancyForD/Pods-pregnancyForD-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F9810B325030579C8D81C70E /* [CP] Check Pods Manifest.lock */ = {
+		D25985C94CA70FE538053424 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
