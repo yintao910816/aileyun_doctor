@@ -1280,8 +1280,8 @@
 				TargetAttributes = {
 					CF871E871E9A11B600478686 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GMPPSEQW73;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = KZ83WEMA2D;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1737,7 +1737,8 @@
 				CODE_SIGN_ENTITLEMENTS = pregnancyForD/pregnancyForD.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = GMPPSEQW73;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = KZ83WEMA2D;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1784,8 +1785,9 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jclick.doctor;
+				PRODUCT_BUNDLE_IDENTIFIER = potatochat.beta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = potatochat.beta.dev;
 				SWIFT_OBJC_BRIDGING_HEADER = pregnancyForD/ObjectiveCBridge.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1802,7 +1804,8 @@
 				CODE_SIGN_ENTITLEMENTS = pregnancyForD/pregnancyForD.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = GMPPSEQW73;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = KZ83WEMA2D;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1848,8 +1851,9 @@
 					"-all_load",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jclick.doctor;
+				PRODUCT_BUNDLE_IDENTIFIER = potatochat.beta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = potatochat.beta.dev;
 				SWIFT_OBJC_BRIDGING_HEADER = pregnancyForD/ObjectiveCBridge.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -75,7 +75,7 @@ class HCTabScrollModule: NSObject {
             b.setTitleColor(kTextColor, for: .normal)
             b.titleLabel?.font = UIFont.init(name: kReguleFont, size: kTextSize - 2)
             b.tag = index
-            b.addTarget(self, action: #selector(TabScrollModule.btnClick), for: .touchDown)
+            b.addTarget(self, action: #selector(btnClick), for: .touchDown)
             segmentV.addSubview(b)
             btnArr.append(b)
         }
@@ -92,7 +92,7 @@ class HCTabScrollModule: NSObject {
         scrollV.contentSize = CGSize.init(width: scrollF.width * CGFloat(views.count), height: scrollF.height)
     }
     
-    func btnClick(sender : UIButton){
+    @objc func btnClick(sender : UIButton){
         segmentIndex = CGFloat(sender.tag)
     }
     
