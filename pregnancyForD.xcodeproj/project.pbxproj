@@ -1785,7 +1785,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = potatochat.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jclick.doctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = potatochat.beta.dev;
 				SWIFT_OBJC_BRIDGING_HEADER = pregnancyForD/ObjectiveCBridge.h;
@@ -1851,7 +1851,7 @@
 					"-all_load",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = potatochat.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jclick.doctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = potatochat.beta.dev;
 				SWIFT_OBJC_BRIDGING_HEADER = pregnancyForD/ObjectiveCBridge.h;
