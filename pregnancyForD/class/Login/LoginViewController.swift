@@ -160,7 +160,7 @@ class LoginViewController: UIViewController {
         loginBtn.addTarget(self, action: #selector(login), for: .touchUpInside)
         
         #if DEBUG
-        cellphoneTF.text = "13645358516"
+        cellphoneTF.text = "15717102067"
         passwordTF.text  = "8888"
         #endif
     }
