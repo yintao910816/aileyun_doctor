@@ -1280,7 +1280,7 @@
 				TargetAttributes = {
 					CF871E871E9A11B600478686 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GMPPSEQW73;
+						DevelopmentTeam = KZ83WEMA2D;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1739,7 +1739,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.2;
-				DEVELOPMENT_TEAM = GMPPSEQW73;
+				DEVELOPMENT_TEAM = KZ83WEMA2D;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1788,7 +1788,7 @@
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jclick.doctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = ailuyun_doctor_dev;
+				PROVISIONING_PROFILE_SPECIFIER = potatochat.beta.dev;
 				SWIFT_OBJC_BRIDGING_HEADER = pregnancyForD/ObjectiveCBridge.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1853,7 +1853,7 @@
 					"-all_load",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jclick.doctor;
+				PRODUCT_BUNDLE_IDENTIFIER = potatochat.beta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = aleyun_doctord_appstore;
 				SWIFT_OBJC_BRIDGING_HEADER = pregnancyForD/ObjectiveCBridge.h;
