@@ -63,7 +63,7 @@ extension HttpClient {
             
             let ccb = CommonCallBack.init()
             let resDic = responseObject as! NSDictionary
-            ccb.infoCode = resDic.value(forKey: "infoCode") as! NSInteger
+            ccb.infoCode = resDic.value(forKey: "infoCode") as? NSInteger ?? 400
             
             HCPrint(message: URLString)
             HCPrint(message: parameters)

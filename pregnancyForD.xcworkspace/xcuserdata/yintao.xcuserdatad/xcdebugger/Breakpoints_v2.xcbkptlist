@@ -52,5 +52,101 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CCB90321-A8D5-479C-B297-6F82BF404F5E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pregnancyForD/class/Tools/Http/HttpRequestManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "tagsOperation(tagId:tagname:opsType:callback:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "31128957-0C6C-4697-8C07-49B56E938D38"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pregnancyForD/class/Tools/Http/HttpClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "POST(_:requestKey:parameters:callBack:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "205B817F-5459-492C-A042-3954E85EF56E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pregnancyForD/class/Tools/Http/HttpClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "GET(_:requestKey:parameters:callBack:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "99715BC1-845F-4145-B259-91F0602D9D9C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pregnancyForD/class/Tools/Http/HttpClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "POST(_:requestKey:parameters:callBack:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "99715BC1-845F-4145-B259-91F0602D9D9C - 90b847c3ed51bb43"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "pregnancyForD.HttpClient.POST(_: Swift.String, requestKey: Swift.Optional&lt;Swift.String&gt;, parameters: __C.NSDictionary, callBack: (Any, pregnancyForD.CommonCallBack) -&gt; ()) -&gt; ()"
+                  moduleName = "pregnancyForD"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yintao/Desktop/%E9%A1%B9%E7%9B%AE/%E8%83%A1%E4%BC%9F%E5%85%89%E5%8C%BB%E8%8D%AF%E9%A1%B9%E7%9B%AE/Git/aileyun_doctor/pregnancyForD/class/Tools/Http/HttpClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "78">
+               </Location>
+               <Location
+                  uuid = "99715BC1-845F-4145-B259-91F0602D9D9C - 2d2ca3fa64bbfa7d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.NSProgress) -&gt; () in pregnancyForD.HttpClient.POST(_: Swift.String, requestKey: Swift.Optional&lt;Swift.String&gt;, parameters: __C.NSDictionary, callBack: (Any, pregnancyForD.CommonCallBack) -&gt; ()) -&gt; ()"
+                  moduleName = "pregnancyForD"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yintao/Desktop/%E9%A1%B9%E7%9B%AE/%E8%83%A1%E4%BC%9F%E5%85%89%E5%8C%BB%E8%8D%AF%E9%A1%B9%E7%9B%AE/Git/aileyun_doctor/pregnancyForD/class/Tools/Http/HttpClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

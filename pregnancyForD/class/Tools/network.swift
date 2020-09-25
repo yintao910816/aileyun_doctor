@@ -25,6 +25,8 @@ let IMAGE_URL = "https://www.ivfcn.com"
 
 
 
+//let HTTP_ROOT_URL = "http://admin.ivfcn.com:8082"
+//let HTTP_ROOT_URL = "http://app.ivfcn.com:8091"
 
 let HTTP_ROOT_URL = "https://www.ivfcn.com"
 
@@ -35,6 +37,7 @@ let HTTP_ROOT_URL = "https://www.ivfcn.com"
 
 
 
+//let HTTP_HOST_URL = HTTP_ROOT_URL.appending("/doctor-api/api/")
 
 let HTTP_HOST_URL = HTTP_ROOT_URL.appending("/app/")
 
@@ -45,6 +48,7 @@ let HC_IS_MEMBER = HTTP_HOST_URL + "doctor/queryTeamMember.do"
 let USER_SEND_SMS_URL = HTTP_HOST_URL + "doctor/validateCode.do"
 // 登录
 let USER_VALIFY_SMS_URL = HTTP_HOST_URL + "doctor/valify.do"
+//let USER_VALIFY_SMS_URL = HTTP_HOST_URL + "doctor/login"
 
 // 在线咨询列表
 let CONSULT_LIST_URL = HTTP_HOST_URL + "doctor/consult/getConsultList.do"

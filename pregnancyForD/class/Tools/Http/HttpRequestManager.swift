@@ -323,13 +323,18 @@ class HttpRequestManager {
             
             if ccb.infoCode == 200 {
                 let userDic = ccb.data as! [String : Any]
+                print(userDic)
                 UserDefaults.standard.set(true, forKey:kReceiveRemoteNote)
                 
                 UserDefaults.standard.set(number, forKey: kCurrentUserPhone)
-                UserDefaults.standard.set(userDic, forKey: kCurrentUser)
             
-//                callback(ccb.success(), UserModel.init(userDic), ccb.message)
-                callback(ccb.success(), JSONDeserializer<UserModel>.deserializeFrom(dict: userDic), ccb.message)
+                let user = JSONDeserializer<UserModel>.deserializeFrom(dict: userDic)
+
+                if let userInfo = user?.toJSON() {
+                    UserDefaults.standard.set(userInfo, forKey: kCurrentUser)
+                }
+
+                callback(ccb.success(), user, ccb.message)
             }else{
                 callback(false, nil, ccb.message)
             }
